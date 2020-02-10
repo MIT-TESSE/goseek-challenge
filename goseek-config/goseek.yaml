@@ -1,4 +1,4 @@
-environment_file: ''  # PATH TO TESSE
+build_path: ''  # PATH TO TESSE
 scenes: [3, 6]
 success_dist: 2
 n_targets: [30, 30]
