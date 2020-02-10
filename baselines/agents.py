@@ -1,7 +1,6 @@
 from typing import Any, Dict
 
 import numpy as np
-from stable_baselines import PPO2
 
 from tesse_gym.eval.agent import Agent
 
@@ -15,6 +14,7 @@ class StableBaselinesPPO(Agent):
         Args:
             config (Dict[str, Any]): Agent configuration.
         """
+        from stable_baselines import PPO2
         self.model = PPO2.load(config["weights"])
         self.state = None
 
