@@ -60,7 +60,7 @@ Note that evaluations occur on witheld office scenes.
 
 The timeline for the competition is as follows:
 
-- __Now until Mid-March__: Competition software available for local testing and trainiing by participants.
+- __Now until Mid-March__: Competition software available for local testing and training by participants.
 - __Mid-March__: Instructions for online submissions made available to participants.
 - __April 30__: Online submission period ends.
 - __May 31__: Workshop date. Competition winner invited to provide keynote presentation.
@@ -84,20 +84,6 @@ This sections describes how to evaluate your agent locally, then submit online f
 ### Local Evaluation
 
 *TODO: Define*
-
-#### Baseline PPO
-To evaluate a trained [Stable Baselines PPO agent](https://github.mit.edu/TESS/tesse-gym/blob/master/notebooks/stable-baselines-ppo.ipynb):
-
-1. Update `build_path` in `goseek-config/goseek.yaml` with the path to your local simulator build
-
-2. Update `weights` in `baselines/config/stable-baselines-ppo.yaml` with the path to your agent's weights
-
-3. Run the evaluation script:
-
-```sh
-python eval.py --env-config gosee-config/goseek.yaml --agent-config baselines/config/stable-baselines-ppo.yaml
-```
-
 
 ### Online Submission
 
