@@ -72,13 +72,22 @@ We recommend that you follow this repository to be alerted to these announcement
 
 ## Getting Started
 
-Complete installation instructions can be found in [Instructions.md](Instructions.md).
+Complete installation instructions can be found in [Instructions.md](Instructions.md), which lays out prerequisites, provides a link to download the competition simulator, and describes steps to install all required competition software. 
+Users can also find an example for training an RL agent here, as well.
 
 ## Participation
 
+Participants will upload docker containers with their agents to EvalAI in order to be evaluated for the competition. 
+The number of submissions is limited for each user, so we highly recommend performing local evaluations prior to submitting online solutions. 
+This sections describes how to perform evaluate your agent locally, then how to submit for a score.
+
 ### Local Evaluation
 
+*TODO: Define*
+
 ### Online Submission
+
+__NOTE__: Instructions for submitting agents online will be available according to the competition timeline [above](#timeline).
 
 ## Acknowledgements
 
