@@ -36,7 +36,9 @@ class StableBaselinesPPO(Agent):
                 - 3: declare target
         """
         observation = np.repeat(observation[np.newaxis], self.n_train_envs, 0)
-        actions, state = self.model.predict(observation, state=self.state, deterministic=False)
+        actions, state = self.model.predict(
+            observation, state=self.state, deterministic=False
+        )
         self.state = state  # update model state
         return actions[0]
 

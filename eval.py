@@ -10,7 +10,9 @@ from tesse_gym.eval.treasure_hunt_benchmark import TreasureHuntBenchmark
 from tesse_gym.eval.utils import get_agent_cls
 
 
-def main(env_args: Dict[str, Any], agent_args: Dict[str, Any]) -> Dict[str, Dict[str, float]]:
+def main(
+    env_args: Dict[str, Any], agent_args: Dict[str, Any]
+) -> Dict[str, Dict[str, float]]:
     """ Run GOSEEK evaluation over the specified environment and
     agent configurations.
 
