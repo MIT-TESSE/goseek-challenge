@@ -33,11 +33,11 @@ Note that the types (and dimensions) of observations provided are the same as be
 
 Participants can use either or both of these sources for training their agents. 
 We'll accept online submissions against either source (see [below](#online-submission) for details), as well. 
-However, only evaluations against the __Perception Pipeline__ will be used in the competition. 
+However, only evaluations against the __Perception Pipeline__ will be used to declare a competition winner. 
 
 ### Evaluation
 
-Agents are evaluated on 5 criteria for each episode:
+Agents are evaluated on five criteria for each episode:
 
 1. `n`: number of target fruit found,
 2. `p`: precision of finding target fruit when the agent selects the collect action,
@@ -79,7 +79,7 @@ Users can also find an example for training an RL agent here, as well.
 
 Participants will upload docker containers with their agents to EvalAI in order to be evaluated for the competition. 
 The number of submissions is limited for each user, so we highly recommend performing local evaluations prior to submitting online solutions. 
-This sections describes how to perform evaluate your agent locally, then how to submit for a score.
+This sections describes how to evaluate your agent locally, then submit online for a score.
 
 ### Local Evaluation
 
