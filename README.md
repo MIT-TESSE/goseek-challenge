@@ -60,7 +60,7 @@ Note that evaluations occur on witheld office scenes.
 
 The timeline for the competition is as follows:
 
-- __Now until Mid-March__: Competition software available for local testing and trainiing by participants.
+- __Now until Mid-March__: Competition software available for local testing and training by participants.
 - __Mid-March__: Instructions for online submissions made available to participants.
 - __April 30__: Online submission period ends.
 - __May 31__: Workshop date. Competition winner invited to provide keynote presentation.
