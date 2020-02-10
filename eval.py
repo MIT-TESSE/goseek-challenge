@@ -1,12 +1,12 @@
 import argparse
 import pprint
-from typing import Any, Dict
+from typing import Dict
 
 import yaml
 
 from baselines.agents import *  # specific agent is given in agent-config
 from tesse_gym.eval.agent import Agent
-from tesse_gym.eval.treasure_hunt_benchmark import TreasureHuntBenchmark
+from tesse_gym.eval.goseek_benchmark import GoSeekBenchmark
 from tesse_gym.eval.utils import get_agent_cls
 
 
@@ -24,7 +24,7 @@ def main(
         Dict[str, Dict[str, float]]: Dictionary containing overall evaluation performance as
             well as a summary for each episode.
     """
-    benchmark = TreasureHuntBenchmark(**env_args)
+    benchmark = GoSeekBenchmark(**env_args)
     agent = get_agent_cls(agent_args["name"], Agent)(agent_args)
     return benchmark.evaluate(agent)
 
