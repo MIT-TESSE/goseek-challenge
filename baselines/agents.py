@@ -7,7 +7,7 @@ from tesse_gym.eval.agent import Agent
 
 
 class StableBaselinesPPO(Agent):
-    """ stable-baselines PPO agent for GOSEEK submission. """
+    """ Stable Baselines PPO agent for GOSEEK submission. """
 
     def __init__(self, config: Dict[str, Any]) -> None:
         """ Initialize agent.
@@ -23,7 +23,7 @@ class StableBaselinesPPO(Agent):
         self.n_train_envs = self.model.initial_state.shape[0]
 
     def act(self, observation: np.ndarray) -> int:
-        """ Act upon an observation.
+        """ Act on an observation.
 
         args:
             observation (np.ndarray): observation.
