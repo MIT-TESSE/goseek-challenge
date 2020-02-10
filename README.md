@@ -32,22 +32,23 @@ We provide two data sources for training:
 Note that the types (and dimensions) of observations provided are the same as before; however, the error characteristics are now representative of a real perception system.
 
 Participants can use either or both of these sources for training their agents. 
-We'll accept online submissions against either source (see [below](#online-submission) for details), as well. 
-However, only evaluations against the __Perception Pipeline__ will be used to declare a competition winner. 
+We'll accept online submissions against either source (see [below](#online-submission) for details) and maintain a leaderboard for both. 
+However, only evaluations against the __Perception Pipeline__ will be used to declare an overvall competition winner. 
 
 ### Evaluation
 
-Agents are evaluated on five criteria for each episode:
+Agents are evaluated on the following criteria for each episode.
 
-1. `n`: number of target fruit found,
-2. `p`: precision of finding target fruit when the agent selects the collect action,
-3. `r`: recall of finding target fruit when the agents selects the collect action,
-4. `c`: number of collisions with objects in the scene, and
-5. `s`: steps taken in the episode before all target fruit are collected or time expires.
+1. `r`: recall of finding target fruit when the agents selects the collect action,
+1. `p`: precision of finding target fruit when the agent selects the collect action,
+1. `c`: number of collisions with objects in the scene, and
+1. `a`: actions taken in the episode before all target fruit are collected or time expires.
 
-A single episode score is then define as:
-
-*TOO: What is this? `1.0n + 1.0p + 1.0r - 1.0c - 1.0s`?*
+A single episode score is:
+```
+r + 0.1p - 0.1c/l - 0.1s/l
+```
+where `l` is the maximum episode length (400). Note that an episode terminates early if all fruit are collected.
 
 We use Monte Carlo evaluations to estimate an average episode score for the competition. 
 Note that evaluations occur on witheld office scenes.
