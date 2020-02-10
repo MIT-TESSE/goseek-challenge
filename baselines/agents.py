@@ -45,3 +45,39 @@ class StableBaselinesPPO(Agent):
     def reset(self) -> None:
         """ Reset model state. """
         self.state = None
+
+
+class RandomAgent(Agent):
+    """ Agent that takes random actions. """
+
+    def __init__(self, config: Dict[str, Any]) -> None:
+        """ Initialize agent.
+
+        Args:
+            config (Dict[str, Any]): Agent configuration
+        """
+
+        self.action_space = np.arange(0, 4)
+
+        # give probability for actions in `self.action_space`
+        self.action_probability = np.array(config["action_probability"])
+        self.action_probability /= self.action_probability.sum()
+
+    def act(self, observation: np.ndarray) -> int:
+        """ Take a uniformly random action.
+
+        args:
+            observation (np.ndarray): observation.
+
+        returns:
+            int: an action in [0, 4) defined as follows
+                - 0: forward 0.5m
+                - 1: right 8 degrees
+                - 2: left 8 degrees
+                - 3: declare target
+        """
+        return np.random.choice(self.action_space, p=self.action_probability)
+
+    def reset(self) -> None:
+        """ Nothing required on episode reset. """
+        pass
