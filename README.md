@@ -18,7 +18,7 @@ __Outline__
 The objective of this challenge is to navigate an agent through an office environment to collect randomly-spawned fruit as quickly as possible. 
 Our teaser trailer (below) highlights several of the components of the challenge, such as the office environment, the target fruit, the perception pipeline, and our idealized robot's physical characteristics.
 
-[![GOSEEK Teaser Trailer](https://img.youtube.com/vi/KXTag0xsg28/0.jpg)](https://www.youtube.com/watch?KXTag0xsg28=VID)
+[![GOSEEK Teaser Trailer](https://img.youtube.com/vi/KXTag0xsg28/0.jpg)](https://www.youtube.com/watch?v=KXTag0xsg28)
 
 More specifically, the agent can select from one of four actions at each decision epoch: move forward 0.5 meters, turn left 8 degrees, turn right 8 degrees, and collect fruit within 2.0 meters of the agent's current position. 
 Our robot is equiped with stereo cameras and an Inertial Measurement Unit (IMU), from which a state-of-the-art perception pipeline estimates three pieces of information that make up the agent's observation at each decision epoch: localization information (position and heading relative to start position), pixel-wise semantic labels for objects in the robot's field of view, and pixel-wise depth in the robot's field of view. 
