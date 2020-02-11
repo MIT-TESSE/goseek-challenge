@@ -86,7 +86,7 @@ This sections describes how to perform evaluate your agent locally, then how to 
 *TODO: Define*
 
 #### Baseline PPO
-To evaluate a trained [Stable Baselines PPO agent](https://github.mit.edu/TESS/tesse-gym/blob/master/notebooks/stable-baselines-ppo.ipynb):
+To evaluate a trained [Stable Baselines PPO agent](https://github.mit.edu/TESS/tesse-gym/blob/master/baselines/stable-baselines-ppo.ipynb):
 
 1. Update `build_path` in `goseek-config/goseek.yaml` with the path to your local simulator build
 
