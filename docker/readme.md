@@ -3,10 +3,10 @@
 
 The following guide will show you how to build two docker images:
 
-* `tesse-eval`], a small docker image which can be used to evaluate agents and upload submissions.
+* `tesse-eval`, a small docker image which can be used to evaluate agents and upload submissions.
     * **We recommend participants start here!**
 * `tesse-kimera`, a larger image which contains everything necessary to run a realistic perception pipeline with TESSE. 
-    * This image, `tesse-kimera`, can be run side-by-side with `tesse-eval` to evaluate an agent. <small>**[Instructions forthcoming]**</small>
+    * This image, `tesse-kimera`, can be run side-by-side with `tesse-eval` to evaluate an agent. **[Instructions forthcoming]**
 
 ## Prerequisites
 
@@ -14,16 +14,18 @@ You will need to install [Docker](https://docs.docker.com/install/linux/docker-c
 
 ### Adding Git Repositories
 
-> These are **temporary instructions** due to SSH key permissions on github.mit.edu - once TESS is on github.com, the Dockerfile can internally perform repo cloning during builds.
+> This step is **temporary** due to SSH key permissions on github.mit.edu - once TESS is on github.com, the Dockerfile can internally perform repo cloning during builds.
 
 ```bash
-cd goseek-challenge/docker/eval/
+cd goseek-challenge/docker/tesse-eval/
 ./temporary_clones.sh
 ```
 
 ### Include model weights
 
-Inside the `goseek-challenge/docker/eval/` directory, add the example model weights file. If the name differs from `stable-baselines-ppo-1-update-2500.pkl` then you will need to edit the following two lines in the `Dockerfile`:
+Inside the `goseek-challenge/docker/tesse-eval/` directory, add the example model weights file. 
+
+**Note:** If the name differs from `stable-baselines-ppo-1-update-2500.pkl` then you will need to edit the following two lines in the `Dockerfile`:
 
 ```bash
 ################################
@@ -32,17 +34,19 @@ Inside the `goseek-challenge/docker/eval/` directory, add the example model weig
 
 RUN pip install tensorflow-gpu==1.14.0 stable-baselines
 COPY stable-baselines-ppo-1-update-2500.pkl baselines/config/
-#     ^^^^ 1. rename this pkl file ^^^^
+#     ^^^^ 1. rename to match your pkl file ^^^^
 
 RUN echo "launch_tesse: false" >> goseek-config/goseek.yaml
 RUN echo "weights: /goseek-challenge/baselines/config/stable-baselines-ppo-1-update-2500.pkl" >> baselines/config/stable-baselines-ppo.yaml
-#     ^^^^ 2. rename this pkl file ^^^^
+#                ^^^^ 2. rename to match your pkl file ^^^^
 ```
+
+### Building the image
 
 Finally, build the `tesse-eval` image:
 
 ```bash
-cd goseek-challenge/docker/eval/
+cd goseek-challenge/docker/tesse-eval/
 docker build -t tesse-eval .
 ```
 
@@ -58,13 +62,13 @@ And in a second window, run the evaluation script:
 
 ```bash
 docker run --network="host" --gpus all  \
-        --rm -it tesse-eval /bin/bash -c \
-        "python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/stable-baselines-ppo.yaml"
+  --rm -it tesse-eval /bin/bash -c      \
+  "python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/stable-baselines-ppo.yaml"
 ```
 
-<small>**TODO(MMAZ):**  use this as `entrypoint.sh`?</small>
+**TODO(MMAZ):**  use this as `entrypoint.sh`?
 
-You should see an output similar to the following output if evaluation completed successfully:
+On successful termination of the evaluation script, you should see an output similar to the following:
 
 ```
 Evaluation episode on scene: 0
