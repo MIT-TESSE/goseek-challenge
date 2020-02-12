@@ -42,15 +42,13 @@ ENV PATH /opt/conda/envs/python37/bin:/opt/conda/envs/bin:$PATH
 
 RUN pip install opencv-python
 
+# tested with goseek-0.0.2
 # TODO(MMAZ) replace with clone
 COPY tesse-gym  /tesse-gym
 COPY tesse-interface /tesse-interface
 COPY goseek-challenge /goseek-challenge
 WORKDIR /tesse-interface
-# TODO(MMAZ) temporary workaround to enable rebasing
-RUN git config --global user.email "tesse@tesse" && git config --global user.name "tesse"
 RUN git checkout feature/rgb-metadata && \
-    git rebase master && \
     cd python && \
     python setup.py install
 WORKDIR /tesse-gym
