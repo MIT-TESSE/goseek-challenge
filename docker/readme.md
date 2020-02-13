@@ -23,7 +23,13 @@ cd goseek-challenge/docker/tesse-eval/
 
 ### Include model weights
 
+> This step is **temporary** and is intended for simplified testing of the `tesse-eval` base layer.
+>
+> **TODO(MMAZ):** Modify the documentation to describe how to create a new docker container based on `tesse-eval` as a base layer (the base layer will be valid for submissions which do not use stable-baselines)
+
+
 Inside the `goseek-challenge/docker/tesse-eval/` directory, add the example model weights file. 
+
 
 **Note:** If the name differs from `stable-baselines-ppo-1-update-2500.pkl` then you will need to edit the following two lines in the `Dockerfile`:
 
