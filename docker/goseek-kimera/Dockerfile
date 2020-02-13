@@ -1,11 +1,11 @@
 FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
 # using devel to support installing pycuda
 
-# docker build -t tesse-kimera .
-# docker run --network="host" --gpus all --rm -it tesse-kimera /bin/bash
+# docker build -t goseek-kimera .
+# docker run --network="host" --gpus all --rm -it goseek-kimera /bin/bash
 # or with a volume mount
 # mkdir work
-# docker run --network="host" --gpus all -v $(pwd)/work:/work --rm -it tesse-kimera /bin/bash
+# docker run --network="host" --gpus all -v $(pwd)/work:/work --rm -it goseek-kimera /bin/bash
 #
 # to run in a ROS env:
 # NOTE: this will cause ROS to be sourced for all subsequent commands in the terminal

@@ -3,32 +3,34 @@
 
 The following guide will show you how to build two docker images:
 
-* `tesse-eval`, a small docker image which can be used to evaluate agents and upload submissions.
+* `goseek-eval`, a small docker image which can be used to evaluate agents and upload submissions.
     * **We recommend participants start here!**
-* `tesse-kimera`, a larger image which contains everything necessary to run a realistic perception pipeline with TESSE. 
-    * This image, `tesse-kimera`, can be run side-by-side with `tesse-eval` to evaluate an agent. **[Instructions forthcoming]**
+* `goseek-kimera`, a larger image which contains everything necessary to run a realistic perception pipeline with TESSE. 
+    * This image, `goseek-kimera`, can be run side-by-side with `goseek-eval` to evaluate an agent. **[Instructions forthcoming]**
 
 ## Prerequisites
 
-You will need to install [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and then install [`nvidia-docker`](https://github.com/NVIDIA/nvidia-docker#quickstart) on your host machine. You will also need the TESSE binary.
+You will need to install [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and then install [`nvidia-docker`](https://github.com/NVIDIA/nvidia-docker#quickstart) on your host machine. You will also need the TESSE Unity binary for Linux.
+
+If you are behind a corporate proxy, please [follow these instructions on configuring the docker client](https://docs.docker.com/network/proxy/#configure-the-docker-client) to use your company's proxy settings.
 
 ### Adding Git Repositories
 
 > This step is **temporary** due to SSH key permissions on github.mit.edu - once TESS is on github.com, the Dockerfile can internally perform repo cloning during builds.
 
 ```bash
-cd goseek-challenge/docker/tesse-eval/
+cd goseek-challenge/docker/goseek-eval/
 ./temporary_clones.sh
 ```
 
 ### Include model weights
 
-> This step is **temporary** and is intended for simplified testing of the `tesse-eval` base layer.
+> This step is **temporary** and is intended for simplified testing of the `goseek-eval` base layer.
 >
-> **TODO(MMAZ):** Modify the documentation to describe how to create a new docker container based on `tesse-eval` as a base layer (the base layer will be valid for submissions which do not use stable-baselines)
+> **TODO(MMAZ):** Modify the documentation to describe how to create a new docker container based on `goseek-eval` as a base layer (the base layer will be valid for submissions which do not use stable-baselines)
 
 
-Inside the `goseek-challenge/docker/tesse-eval/` directory, add the example model weights file. 
+Inside the `goseek-challenge/docker/goseek-eval/` directory, add the example model weights file. 
 
 
 **Note:** If the name differs from `stable-baselines-ppo-1-update-2500.pkl` then you will need to edit the following two lines in the `Dockerfile`:
@@ -49,11 +51,11 @@ RUN echo "weights: /goseek-challenge/baselines/config/stable-baselines-ppo-1-upd
 
 ### Building the image
 
-Finally, build the `tesse-eval` image:
+Finally, build the `goseek-eval` Docker image from inside the `goseek-eval/` directory:
 
 ```bash
-cd goseek-challenge/docker/tesse-eval/
-docker build -t tesse-eval .
+cd goseek-challenge/docker/goseek-eval/
+docker build -t goseek-eval .
 ```
 
 ## Running Evaluation with Ground-Truth
@@ -68,7 +70,7 @@ And in a second window, run the evaluation script:
 
 ```bash
 docker run --network="host" --gpus all  \
-  --rm -it tesse-eval /bin/bash -c      \
+  --rm -it goseek-eval /bin/bash -c      \
   "python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/stable-baselines-ppo.yaml"
 ```
 

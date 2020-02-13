@@ -1,7 +1,7 @@
 FROM nvidia/cuda:10.0-cudnn7-runtime-ubuntu18.04
 
-# docker build -t tesse-eval .
-# docker run --network="host" --gpus all  --rm -it tesse-eval /bin/bash
+# docker build -t goseek-eval .
+# docker run --network="host" --gpus all  --rm -it goseek-eval /bin/bash
 
 RUN apt-get clean && apt-get update && apt-get install -y locales
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
