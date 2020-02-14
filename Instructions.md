@@ -24,7 +24,7 @@ unzip goseek-v0.1.0.x86_64.zip
 chmod +x goseek-v0.1.0.x86_64
 ```
 
-2. If using conda, create a new conda environment: `conda create -n goseek python=3.6`. Then activate the environment: `conda activate goseek`
+2. If using conda, create a new conda environment: `conda create -n goseek python=3.6`. Then activate the environment: `conda activate goseek`.
 
 3. Install [tesse-gym](../../../tesse-gym).
 ```sh
