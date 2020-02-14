@@ -130,7 +130,7 @@ scenes: List[int]          # Scenes to run. Note: scenes can be listed twice
 success_dist: int          # Distance from target to be considered found         
 n_targets: List[int]       # Number of targets per scene   
 episode_length: List[int]  # Episode lenght per scene                                               
-launch_tesse: bool         # True to launch the simulator as subprocesses. Otherwise, it must run externally     
+launch_tesse: bool         # True to run the simulator as subprocesses. Otherwise, it must run externally     
 random_seeds: List[int]    # Random seed for each episode to ensure repeatability                                               
 ```      
 
