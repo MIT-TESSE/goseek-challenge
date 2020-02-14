@@ -17,31 +17,48 @@ Note that if you are behind a proxy, please [follow these instructions on config
 
 ## Installing
 
-1. If using conda, create a new conda environment: `conda create -n goseek python=3.7`. 
-Then activate the environment: `conda activate goseek`.
-
-
-2. Clone this repository.
-```
-git clone git@github.mit.edu:TESS/goseek-challenge.git
-```
-
-3. Install [tesse-gym](../../../tesse-gym) and its associated requirements. **Note**: this requires access to the [TESS](https://github.mit.edu/TESS/) organization on MIT Github.
-
-4. Install goseek-challenge requirements.
+1. If using conda, create a new conda environment: 
 
 ```sh
-pip install -r requirements.txt
+conda create -n goseek python=3.7 ipython jupyter
+conda activate goseek
 ```
 
-4. Download and unzip the GOSEEK simulator to your machine from [here](https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download). Then make `goseek-v0.1.0.x86_64` executable. You can run the following from the command line:
+2. Install tesse-gym
+
+```sh
+git clone git@github.mit.edu:TESS/tesse-gym.git
+cd tesse-gym
+
+# install tesse-gym requirements
+pip install -r requirements.txt
+
+# install tesse-gym
+python setup.py develop
+
+cd ..
+```
+
+
+2. Clone this repository and install requirements.
+
+```sh
+git clone git@github.mit.edu:TESS/goseek-challenge.git
+
+cd goseek-challenge
+pip install -r requirements.txt
+cd ..
+```
+
+
+3. Download and unzip the GOSEEK simulator to your machine from [here](https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download). Then make `goseek-v0.1.0.x86_64` executable. You can run the following from the command line:
 ```sh
 wget https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download
 unzip goseek-v0.1.0.x86_64.zip
 chmod +x goseek-v0.1.0.x86_64
 ```
 
-5. Test your installation by running a random agent.
+4. Test your installation by running a random agent.
 
 Add your simulator build path to `goseek-config/goseek.yaml` .
 
