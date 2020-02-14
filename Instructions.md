@@ -21,12 +21,15 @@ Note that if you are behind a proxy, please [follow these instructions on config
 Then activate the environment: `conda activate goseek`.
 
 
-3. Clone this repository.
+2. Clone this repository.
 ```
 git clone git@github.mit.edu:TESS/goseek-challenge.git
 ```
 
-2. Install [tesse-gym](../../../tesse-gym) and its associated requirements. **Note**: this requires access to the [TESS](https://github.mit.edu/TESS/) organization on MIT Github.
+3. Install [tesse-gym](../../../tesse-gym) and its associated requirements. **Note**: this requires access to the [TESS](https://github.mit.edu/TESS/) organization on MIT Github.
+
+4. Install goseek-challenge requirements.
+
 ```sh
 pip install -r requirements.txt
 ```
