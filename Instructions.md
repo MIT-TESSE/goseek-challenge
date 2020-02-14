@@ -169,7 +169,7 @@ python eval.py --env-config PATH_TO_ENVIRONMENT_CONFIG --agent-config PATH_TO_AG
 
 #### Installation
 
-Install[`tensorflow v1.1.14`](https://www.tensorflow.org/) and [`stable-baselines`](https://stable-baselines.readthedocs.io/en/master/):
+Install [`tensorflow v1.1.14`](https://www.tensorflow.org/) and [`stable-baselines`](https://stable-baselines.readthedocs.io/en/master/):
 
 ```sh
 pip install tensorflow-gpu==1.14 --user
