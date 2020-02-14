@@ -7,7 +7,7 @@ These instructions will get your local machine setup to train, test, and submit 
 The competition requires that you use linux.
 
 Using [Anaconda](https://www.anaconda.com/distribution/#download-section) or [miniconda](https://docs.conda.io/en/latest/miniconda.html) is highly recommended. 
-Python 3.6 is required.
+Python 3.7 is required.
 
 Participating in the competition requires Docker, as well. 
 The perception pipeline is defined in a Docker container. 
