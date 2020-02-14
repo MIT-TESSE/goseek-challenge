@@ -46,7 +46,7 @@ Agents are evaluated on the following criteria for each episode:
 
 A single episode score is:
 ```
-r + 0.1p - 0.1c/l - 0.1s/l
+r + 0.1p - 0.1c/l - 0.1a/l
 ```
 where `l` is the maximum episode length (400). Note that an episode terminates early if all fruit are collected.
 
