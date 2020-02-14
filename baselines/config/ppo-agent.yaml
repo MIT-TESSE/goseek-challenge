@@ -1,0 +1,2 @@
+name: StableBaselinesPPO
+weights: '/home/za27933/tess/tesse-gym/baselines/v0.0.2/results/stable-baselines-ppo-1/000002500.pkl'  # MODEL WEIGHT PATH
