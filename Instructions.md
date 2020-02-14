@@ -47,24 +47,20 @@ git clone git@github.mit.edu:TESS/goseek-challenge.git
 
 cd goseek-challenge
 pip install -r requirements.txt
-cd ..
 ```
 
 
-3. Download and unzip the GOSEEK simulator to your machine from [here](https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download). Then make `goseek-v0.1.0.x86_64` executable. You can run the following from the command line:
+3. Next, you need to obtain GOSEEK simulator. Execute the following:
 ```sh
-wget https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download
-unzip goseek-v0.1.0.x86_64.zip
-chmod +x goseek-v0.1.0.x86_64
+mkdir -p simulator
+wget --no-proxy https://llcad-github.llan.ll.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip  --no-check-certificate -P simulator
+unzip simulator/goseek-v0.1.0.zip -d simulator
+chmod +x simulator/goseek-v0.1.0.x86_64
+
 ```
+This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable. Note that if you choose to place the simulator in an alternative location, you will need to modify `goseek-config/goseek.yaml` to reflect that location.
 
-4. Test your installation by running a random agent.
-
-Add your simulator build path to `goseek-config/goseek.yaml` .
-
-Then, run an agent that receives observations and takes random actions: 
-
-
+4. Test your installation by running a random agent. The agent receives observations and takes random actions: 
 ```sh
 python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/random-agent.yaml
 ```
