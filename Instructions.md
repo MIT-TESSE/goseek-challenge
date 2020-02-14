@@ -121,7 +121,16 @@ class Agent:
 
 2. Define a configuration file.
 
-The configuration file must contain the field `name`, specifying the agent's class name. All other fields will be passed as keyword arguments to the agent upon construction.
+Agent configuration must be specified in a YAML file passed to the evaluation script. The file must contain the field `name`, specifying the agent's class name. All other fields will be passed as keyword arguments to the agent upon construction. An example is below:
+
+```yaml
+# example-configuration.yaml
+name: AgentName
+custom_field_1: VALUE_1
+...
+custom_field_n: VALUE_N
+...
+```
 
 3. Run the evaluation script.
 
