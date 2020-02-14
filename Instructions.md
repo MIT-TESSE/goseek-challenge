@@ -34,10 +34,10 @@ git clone git@github.mit.edu:TESS/goseek-challenge.git
 pip install -r requirements.txt
 ```
 
-4. Download and unzip the GOSEEK simulator to your machine from [here](https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download). Then make `goseek-v0.1.0.x86_64` executable. You can run the following from the command line:
+4. Download and unzip the GOSEEK simulator to your machine from [here](https://llcad-github.llan.ll.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip). Then make `goseek-v0.1.0.x86_64` executable. You can run the following from the command line:
 ```sh
-wget https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download
-unzip goseek-v0.1.0.x86_64.zip
+wget https://llcad-github.llan.ll.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip
+unzip goseek-v0.1.0.zip
 chmod +x goseek-v0.1.0.x86_64
 ```
 
