@@ -17,19 +17,28 @@ Note that if you are behind a proxy, please [follow these instructions on config
 
 ## Installing
 
-1. Download and unzip the GOSEEK simulator to your machine from [here](https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download). Then make `goseek-v0.1.0.x86_64` executable. You can run the following from the command line:
+1. If using conda, create a new conda environment: `conda create -n goseek python=3.6`. 
+Then activate the environment: `conda activate goseek`.
+
+2. Install [tesse-gym](../../../tesse-gym) and its associated requirements.
+```sh
+TODO: finish
+```
+
+3. Clone this repository.
+```
+git clone git@github.mit.edu:TESS/goseek-challenge.git
+```
+
+4. Download and unzip the GOSEEK simulator to your machine from [here](https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download). Then make `goseek-v0.1.0.x86_64` executable. You can run the following from the command line:
 ```sh
 wget https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download
 unzip goseek-v0.1.0.x86_64.zip
 chmod +x goseek-v0.1.0.x86_64
 ```
 
-2. If using conda, create a new conda environment: `conda create -n goseek python=3.6`. Then activate the environment: `conda activate goseek`.
 
-3. Install [tesse-gym](../../../tesse-gym).
-```sh
-TODO: finish
-```
+
 
 
 ## Usage
