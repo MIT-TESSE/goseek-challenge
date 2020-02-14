@@ -178,7 +178,7 @@ pip install stable-baselines --user
 
 #### Training
 
-See `tesse-gym/baselines/goseek-ppo.ipynb` for an example of how to train a PPO agent for the GOSEEK challenge. The notebook contains examples of how to: 
+See `tesse-gym/baselines/goseek-ppo.ipynb` to train a PPO agent for the GOSEEK challenge. The notebook details how to: 
 
 * Configure a `tesse-gym` environment
 * Define a policy
