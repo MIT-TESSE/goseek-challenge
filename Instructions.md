@@ -7,7 +7,7 @@ These instructions will get your local machine setup to train, test, and submit 
 The competition requires that you use linux.
 
 Using [Anaconda](https://www.anaconda.com/distribution/#download-section) or [miniconda](https://docs.conda.io/en/latest/miniconda.html) is highly recommended. 
-Python 3.6 is required.
+Python 3.7 is required.
 
 Participating in the competition requires Docker, as well. 
 The perception pipeline is defined in a Docker container. 
@@ -17,17 +17,21 @@ Note that if you are behind a proxy, please [follow these instructions on config
 
 ## Installing
 
-1. If using conda, create a new conda environment: `conda create -n goseek python=3.6`. 
+1. If using conda, create a new conda environment: `conda create -n goseek python=3.7`. 
 Then activate the environment: `conda activate goseek`.
 
-2. Install [tesse-gym](../../../tesse-gym) and its associated requirements.
-```sh
-TODO: finish
-```
 
-3. Clone this repository.
+2. Clone this repository.
 ```
 git clone git@github.mit.edu:TESS/goseek-challenge.git
+```
+
+3. Install [tesse-gym](../../../tesse-gym) and its associated requirements. **Note**: this requires access to the [TESS](https://github.mit.edu/TESS/) organization on MIT Github.
+
+4. Install goseek-challenge requirements.
+
+```sh
+pip install -r requirements.txt
 ```
 
 4. Download and unzip the GOSEEK simulator to your machine from [here](https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download). Then make `goseek-v0.1.0.x86_64` executable. You can run the following from the command line:
@@ -37,6 +41,16 @@ unzip goseek-v0.1.0.x86_64.zip
 chmod +x goseek-v0.1.0.x86_64
 ```
 
+5. Test your installation by running a random agent.
+
+Add your simulator build path to `goseek-config/goseek.yaml` .
+
+Then, run an agent that receives observations and takes random actions: 
+
+
+```sh
+python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/random-agent.yaml
+```
 
 
 
