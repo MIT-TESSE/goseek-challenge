@@ -2,6 +2,17 @@
 
 These instructions will get your local machine setup to train, test, and submit solutions for the [GOSEEK challenge](README.md). 
 
+Contents:
+
+* [Prerequisites](#Prerequisites)
+* [Installation](#Installation)
+* [Usage](#Usage)
+   * [Local Evaluation](#Local-Evaluation)
+   * [Docker Evaluation](#Docker-Evaluation)
+   * [Submission](#Submission)
+* [Examples](#Examples)
+
+
 ## Prerequisites
 
 The competition requires that you use linux.
@@ -15,7 +26,7 @@ Participant policies are also submitted as Docker containers.
 Install [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and then install [`nvidia-docker`](https://github.com/NVIDIA/nvidia-docker#quickstart) on your host machine. 
 Note that if you are behind a proxy, please [follow these instructions on configuring the docker client](https://docs.docker.com/network/proxy/#configure-the-docker-client) to use your organization's proxy settings.
 
-## Installing
+## Installation
 
 1. If using conda, create a new conda environment: 
 
@@ -56,21 +67,119 @@ mkdir -p simulator
 wget --no-proxy https://llcad-github.llan.ll.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip  --no-check-certificate -P simulator
 unzip simulator/goseek-v0.1.0.zip -d simulator
 chmod +x simulator/goseek-v0.1.0.x86_64
-
 ```
+
 This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable. Note that if you choose to place the simulator in an alternative location, you will need to modify `goseek-config/goseek.yaml` to reflect that location.
 
 4. Test your installation by running a random agent. The agent receives observations and takes random actions: 
+
 ```sh
 python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/random-agent.yaml
 ```
 
 
 
-
 ## Usage
 
+### Local Evaluation
+
+
+1. Implement the following interface in `baselines/agents.py`.
+
+
+```python
+class Agent:
+    """ Interface for submitting an agent for evaluation. """
+
+    def act(self, observation: np.ndarray) -> int:
+        """ Act upon an environment observation.
+        
+        The observation is given as a vector of shape (384003,). 
+        The first 384000 values contain RGB, depth, and segmentation images,
+        the last three contain pose in (x, y, heading). 
+        
+        An example of decoding this in numpy:
+        
+        >>> imgs = observation[:-3].reshape(240, 320, 5)
+        >>> rgb = imgs[... :3]
+        >>> segmentation = imgs[...,  3]
+        >>> depth = imgs[..., 4]
+        >>> pose = observations[-3:]
+
+        Args:
+            observation (np.ndarray): Shape (384003,) array of observations as described above.
+
+        Returns:
+            int: Agent's action in the range [0,3].
+        """
+        raise NotImplementedError
+
+    def reset(self) -> None:
+        """ Called when the environment resets. """
+        raise NotImplementedError
+```
+
+2. Define a configuration file.
+
+The configuration file must contain the field `name`, specifying the agent's class name. All other fields will be passed as keyword arguments to the agent upon construction.
+
+3. Run the evaluation script.
+
+This script requires two arguments:
+
+* env-config: A yaml file specifying episode configuration.
+
+* agent-config: A yaml file specifying agent configuration.
+
+Finally, run
+
+
+```sh
+python eval.py --env-config goseek-config/goseek.yaml --agent-config PATH_TO_AGENT_CONFIG
+```
+
+### Docker Evaluation
+**TODO**
+
+### Submission
+**TODO**
+
+
 ## Examples
+
+### Baseline Proximal Policy Optimization (PPO)
+
+**Note** Temporarily, you must be on tesse-gym branch [0.0.1-SNAPSHOT](https://github.mit.edu/TESS/tesse-gym/tree/0.1.1-SNAPSHOT)
+
+#### Installation
+
+Install[`tensorflow v1.1.14`](https://www.tensorflow.org/) and [`stable-baselines`](https://stable-baselines.readthedocs.io/en/master/):
+
+```sh
+pip install tensorflow-gpu==1.14 --user
+pip install stable-baselines --user
+```
+
+#### Training
+
+See `tesse-gym/baselines/goseek-ppo.ipynb` for an example of how to train a PPO agent for the GOSEEK challenge. The notebook contains examples of how to: 
+
+* Configure a `tesse-gym` environment
+* Define a policy
+* Train a model
+* Visualize results 
+
+#### Local Evaluation
+
+Once trained, you can evaluate your model with the same pipeline used for the random agent above. Simply update `goseek-challenge/baselines/config/baseline-ppo.yaml` with the path to the trained weights for your agent, this will be loaded by the `StableBaselinesPPO` agent defined in `baselines/agents.py`. Evaluate by running 
+
+```sh
+python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/ppo-agent.yaml
+```
+
+
+
+
 
 ## Disclaimer
 
