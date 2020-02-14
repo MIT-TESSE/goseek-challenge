@@ -4,7 +4,42 @@ These instructions will get your local machine setup to train, test, and submit 
 
 ## Prerequisites
 
+The competition requires that you use linux.
+
+Using [Anaconda](https://www.anaconda.com/distribution/#download-section) or [miniconda](https://docs.conda.io/en/latest/miniconda.html) is highly recommended. 
+Python 3.6 is required.
+
+Participating in the competition requires Docker, as well. 
+The perception pipeline is defined in a Docker container. 
+Participant policies are also submitted as Docker containers.
+Install [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and then install [`nvidia-docker`](https://github.com/NVIDIA/nvidia-docker#quickstart) on your host machine. 
+Note that if you are behind a proxy, please [follow these instructions on configuring the docker client](https://docs.docker.com/network/proxy/#configure-the-docker-client) to use your organization's proxy settings.
+
 ## Installing
+
+1. If using conda, create a new conda environment: `conda create -n goseek python=3.6`. 
+Then activate the environment: `conda activate goseek`.
+
+2. Install [tesse-gym](../../../tesse-gym) and its associated requirements.
+```sh
+TODO: finish
+```
+
+3. Clone this repository.
+```
+git clone git@github.mit.edu:TESS/goseek-challenge.git
+```
+
+4. Download and unzip the GOSEEK simulator to your machine from [here](https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download). Then make `goseek-v0.1.0.x86_64` executable. You can run the following from the command line:
+```sh
+wget https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download
+unzip goseek-v0.1.0.x86_64.zip
+chmod +x goseek-v0.1.0.x86_64
+```
+
+
+
+
 
 ## Usage
 

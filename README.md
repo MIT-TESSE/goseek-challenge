@@ -18,7 +18,7 @@ __Outline__
 The objective of this challenge is to navigate an agent through an office environment to collect randomly-spawned fruit as quickly as possible. 
 Our teaser trailer (below) highlights several of the components of the challenge, such as the office environment, the target fruit, the perception pipeline, and our idealized robot's physical characteristics.
 
-*TODO: Embed teaser trailer*
+[![GOSEEK Teaser Trailer](https://img.youtube.com/vi/KXTag0xsg28/0.jpg)](https://www.youtube.com/watch?v=KXTag0xsg28)
 
 More specifically, the agent can select from one of four actions at each decision epoch: move forward 0.5 meters, turn left 8 degrees, turn right 8 degrees, and collect fruit within 2.0 meters of the agent's current position. 
 Our robot is equiped with stereo cameras and an Inertial Measurement Unit (IMU), from which a state-of-the-art perception pipeline estimates three pieces of information that make up the agent's observation at each decision epoch: localization information (position and heading relative to start position), pixel-wise semantic labels for objects in the robot's field of view, and pixel-wise depth in the robot's field of view. 
@@ -32,22 +32,23 @@ We provide two data sources for training:
 Note that the types (and dimensions) of observations provided are the same as before; however, the error characteristics are now representative of a real perception system.
 
 Participants can use either or both of these sources for training their agents. 
-We'll accept online submissions against either source (see [below](#online-submission) for details), as well. 
-However, only evaluations against the __Perception Pipeline__ will be used to declare a competition winner. 
+We'll accept online submissions against either source (see [below](#online-submission) for details) and maintain a leaderboard for both. 
+However, only evaluations against the __Perception Pipeline__ will be used to declare an overvall competition winner. 
 
 ### Evaluation
 
-Agents are evaluated on five criteria for each episode:
+Agents are evaluated on the following criteria for each episode:
 
-1. `n`: number of target fruit found,
-2. `p`: precision of finding target fruit when the agent selects the collect action,
-3. `r`: recall of finding target fruit when the agents selects the collect action,
-4. `c`: number of collisions with objects in the scene, and
-5. `s`: steps taken in the episode before all target fruit are collected or time expires.
+1. `r`: recall of finding target fruit when the agents selects the collect action,
+1. `p`: precision of finding target fruit when the agent selects the collect action,
+1. `c`: number of collisions with objects in the scene, and
+1. `a`: actions taken in the episode before all target fruit are collected or time expires.
 
-A single episode score is then define as:
-
-*TOO: What is this? `1.0n + 1.0p + 1.0r - 1.0c - 1.0s`?*
+A single episode score is:
+```
+r + 0.1p - 0.1c/l - 0.1s/l
+```
+where `l` is the maximum episode length (400). Note that an episode terminates early if all fruit are collected.
 
 We use Monte Carlo evaluations to estimate an average episode score for the competition. 
 Note that evaluations occur on witheld office scenes.
@@ -56,18 +57,16 @@ Note that evaluations occur on witheld office scenes.
 
 ### Timeline
 
-*TODO: Discuss timeline. Maybe change to late March?*
-
 The timeline for the competition is as follows:
 
-- __Now until Mid-March__: Competition software available for local testing and trainiing by participants.
+- __Now until Mid-March__: Competition software available for local testing and training by participants.
 - __Mid-March__: Instructions for online submissions made available to participants.
 - __April 30__: Online submission period ends.
 - __May 31__: Workshop date. Competition winner invited to provide keynote presentation.
 
 ### Announcements
 
-Over the course of the competition, any important announcements or updates will be listed here. 
+Over the course of the competition, any important announcements or updates will be listed in this section. 
 We recommend that you follow this repository to be alerted to these announcements.
 
 ## Getting Started
@@ -85,6 +84,7 @@ This sections describes how to evaluate your agent locally, then submit online f
 
 *TODO: Define*
 
+
 #### Baseline PPO
 To evaluate a trained [Stable Baselines PPO agent](https://github.mit.edu/TESS/tesse-gym/blob/master/baselines/stable-baselines-ppo.ipynb):
 =======
@@ -100,13 +100,14 @@ To evaluate a trained [Stable Baselines PPO agent](https://github.mit.edu/TESS/t
 python eval.py --env-config gosee-config/goseek.yaml --agent-config baselines/config/stable-baselines-ppo.yaml
 ```
 
+
 ### Online Submission
 
 __NOTE__: Instructions for submitting agents online will be available according to the competition timeline [above](#timeline).
 
 ## Acknowledgements
 
-*Probably thank EvalAI and HabitatAI for path finding*
+First, we would like to thank Rishabh Jain and the rest of the team at [EvalAI](https://evalai.cloudcv.org/) for providing their infrastructure and personal time to support this challenge. We must also acknowledge the team behind [The Habitat challenge](https://github.com/facebookresearch/habitat-challenge) for being pathfinders of RL challenges with online submissions. Their challenge and associated infrastructure was inspiration for many of our own decisions.
 
 ## Disclaimer
 
