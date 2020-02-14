@@ -52,7 +52,11 @@ pip install -r requirements.txt
 
 3. Next, you need to obtain GOSEEK simulator. Execute the following:
 ```sh
-./obtain_simulator.sh
+mkdir -p simulator
+wget --no-proxy https://llcad-github.llan.ll.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip  --no-check-certificate -P simulator
+unzip simulator/goseek-v0.1.0.zip -d simulator
+chmod +x simulator/goseek-v0.1.0.x86_64
+
 ```
 This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable. Note that if you choose to place the simulator in an alternative location, you will need to modify `goseek-config/goseek.yaml` to reflect that location.
 
