@@ -119,9 +119,24 @@ class Agent:
         raise NotImplementedError
 ```
 
-2. Define a configuration file.
+2. Define configuration files
 
-Agent configuration must be specified in a YAML file passed to the evaluation script. The file must contain the field `name`, specifying the agent's class name. All other fields will be passed as keyword arguments to the agent upon construction. An example is below:
+* env-config: A yaml file specifying episode configuration. This contains the fields:
+
+```yaml
+# GOSEEK environment configuration
+build_path: str            # Path to simulator build                                          
+scenes: List[int]          # Scenes to run. Note: scenes can be listed twice
+success_dist: int          # Distance from target to be considered found         
+n_targets: List[int]       # Number of targets per scene    
+episode_length: List[int]  # Episode lenght per scene                                                 
+launch_tesse: bool         # True to launch the simulator as subprocesses. Otherwise, it must be running externally       
+random_seeds: List[int]    # Random seed for each episode to ensure repeatability.                                                           
+```      
+
+* agent-config: A YAML file specifying agent configuration.
+
+The file must contain the field `name`, specifying the agent's class name. All other fields will be passed as keyword arguments to the agent upon construction. An example is below:
 
 ```yaml
 # example-configuration.yaml
@@ -129,22 +144,14 @@ name: AgentName
 custom_field_1: VALUE_1
 ...
 custom_field_n: VALUE_N
-...
 ```
+
 
 3. Run the evaluation script.
 
-This script requires two arguments:
-
-* env-config: A yaml file specifying episode configuration.
-
-* agent-config: A yaml file specifying agent configuration.
-
-Finally, run
-
 
 ```sh
-python eval.py --env-config goseek-config/goseek.yaml --agent-config PATH_TO_AGENT_CONFIG
+python eval.py --env-config PATH_TO_ENVIRONMENT_CONFIG --agent-config PATH_TO_AGENT_CONFIG
 ```
 
 ### Docker Evaluation
