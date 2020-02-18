@@ -1,7 +1,0 @@
-build_path: 'simulator/goseek-v0.1.0.x86_64'  # PATH TO TESSE
-scenes: [3, 5]
-success_dist: 2
-n_targets: [30, 30]
-episode_length: [400, 400]
-launch_tesse: True
-random_seeds: [10, 100]
