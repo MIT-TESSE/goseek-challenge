@@ -82,10 +82,6 @@ This sections describes how to evaluate your agent locally, then submit online f
 
 Before proceeding, we recommend that you have read through and completed [these instructions](Instructions.md).
 
-### Prepare docker image
-
-- define/build docker
-
 ### Local Evaluation
 
 - evaluate against ground truth
