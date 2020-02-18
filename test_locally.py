@@ -59,7 +59,7 @@ output = subprocess.check_output(
         "python eval.py --episode-config /config/ground-truth.yaml --agent-config agent.yaml",
     ]
 )
-print(output)
+print(output.decode('utf-8'))
 
 # cleanup
 sim.terminate()
