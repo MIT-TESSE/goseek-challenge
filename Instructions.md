@@ -8,8 +8,8 @@ Contents:
 * [Installation](#Installation)
 * [Usage](#Usage)
    * [Local Evaluation](#Local-Evaluation)
-   * [Docker Evaluation](#Docker-Evaluation)
-   * [Submission](#Submission)
+   * [Training](#Training)
+   * [Prepare Docker Submission](#Prepare-Docker-Submission)
 * [Examples](#Examples)
 
 
@@ -154,10 +154,13 @@ custom_field_n: VALUE_N
 python eval.py --env-config PATH_TO_ENVIRONMENT_CONFIG --agent-config PATH_TO_AGENT_CONFIG
 ```
 
-### Docker Evaluation
-**TODO**
+### Training
 
-### Submission
+- This is mostly just notes....
+
+We've provided a complete example [below](#baseline-proximal-policy-optimization) demonstrating how to train and evaluate a PPO agent with [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/).
+
+### Prepare Docker Submission
 **TODO**
 
 
@@ -170,8 +173,9 @@ python eval.py --env-config PATH_TO_ENVIRONMENT_CONFIG --agent-config PATH_TO_AG
 Install [`tensorflow v1.1.14`](https://www.tensorflow.org/) and [`stable-baselines`](https://stable-baselines.readthedocs.io/en/master/):
 
 ```sh
-pip install tensorflow-gpu==1.14 --user
-pip install stable-baselines --user
+conda activate goseek  # if using conda
+pip install tensorflow-gpu==1.14
+pip install stable-baselines
 ```
 
 #### Training
