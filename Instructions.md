@@ -4,7 +4,73 @@ These instructions will get your local machine setup to train, test, and submit 
 
 ## Prerequisites
 
+The competition requires that you use linux.
+
+Using [Anaconda](https://www.anaconda.com/distribution/#download-section) or [miniconda](https://docs.conda.io/en/latest/miniconda.html) is highly recommended. 
+Python 3.7 is required.
+
+Participating in the competition requires Docker, as well. 
+The perception pipeline is defined in a Docker container. 
+Participant policies are also submitted as Docker containers.
+Install [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and then install [`nvidia-docker`](https://github.com/NVIDIA/nvidia-docker#quickstart) on your host machine. 
+Note that if you are behind a proxy, please [follow these instructions on configuring the docker client](https://docs.docker.com/network/proxy/#configure-the-docker-client) to use your organization's proxy settings.
+
 ## Installing
+
+1. If using conda, create a new conda environment: 
+
+```sh
+conda create -n goseek python=3.7 ipython jupyter
+conda activate goseek
+```
+
+2. Install tesse-gym
+
+```sh
+git clone git@github.mit.edu:TESS/tesse-gym.git
+cd tesse-gym
+
+# install tesse-gym requirements
+pip install -r requirements.txt
+
+# install tesse-gym
+python setup.py develop
+
+cd ..
+```
+
+
+2. Clone this repository and install requirements.
+
+```sh
+git clone git@github.mit.edu:TESS/goseek-challenge.git
+
+cd goseek-challenge
+pip install -r requirements.txt
+cd ..
+```
+
+
+3. Download and unzip the GOSEEK simulator to your machine from [here](https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download). Then make `goseek-v0.1.0.x86_64` executable. You can run the following from the command line:
+```sh
+wget https://lisa.llan.ll.mit.edu/cs/llisapi.dll?func=ll&objId=12017903&objAction=download
+unzip goseek-v0.1.0.x86_64.zip
+chmod +x goseek-v0.1.0.x86_64
+```
+
+4. Test your installation by running a random agent.
+
+Add your simulator build path to `goseek-config/goseek.yaml` .
+
+Then, run an agent that receives observations and takes random actions: 
+
+
+```sh
+python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/random-agent.yaml
+```
+
+
+
 
 ## Usage
 
