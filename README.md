@@ -82,12 +82,29 @@ This sections describes how to evaluate your agent locally, then submit online f
 
 Before proceeding, we recommend that you have read through and completed [these instructions](Instructions.md).
 
-### Local Evaluation
+### Prepare submission
 
-- evaluate against ground truth
-- evaluate against kimera
+1. Modify `Dockerfile` as appropriate for your agent. 
+The example we've provided runs an agent that randomly selects actions at each step.
+Note that we assume `agents.yaml` exists for any configuration of your agent.
 
-### Online Submission
+2. Build the docker image. Here we are naming the image `submission`.
+```
+docker build -t submission .
+```
+
+### Test locally
+
+Use `test-locally.py` for local testing.
+
+Assume you've named your docker image `submission` as above, then evaluate your agent with ground truth as follows
+```sh
+python test-locally.py TODO: COMPLETE
+```
+
+__NOTE__: Instructions for testing your agent with the perception timeline will be posted shortly.
+
+### Submit online.
 
 __NOTE__: Instructions for submitting agents online will be available according to the competition timeline [above](#timeline).
 
