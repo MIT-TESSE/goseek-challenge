@@ -77,6 +77,14 @@ This creates a new `simulator` folder, download and unzips the simulator to that
 python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/random-agent.yaml
 ```
 
+5. Next, build a docker image called `goseek-base`, which is needed to submit online solutions.
+```sh
+cd docker/goseek-base
+./temporary-clones.sh  # Note this is temporary
+docker build -t goseek-base .
+```
+
+6. In order to run the perception pipeline, you will need another docker image with [Kimera](https://github.com/MIT-SPARK/Kimera). Directions for building this image (named `goseek-kimera`) will be poster at a later time.
 
 
 ## Usage
