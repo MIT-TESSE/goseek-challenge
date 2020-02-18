@@ -38,7 +38,7 @@ conda activate goseek
 2. Install tesse-gym
 
 ```sh
-git clone git@github.mit.edu:TESS/tesse-gym.git
+git clone git@github.mit.edu:TESS/tesse-gym.git -b 0.1.1-SNAPSHOT
 cd tesse-gym
 
 # install tesse-gym requirements
@@ -129,7 +129,7 @@ build_path: str            # Path to simulator build
 scenes: List[int]          # Scenes to run. Note: scenes can be listed twice
 success_dist: int          # Distance from target to be considered found         
 n_targets: List[int]       # Number of targets per scene   
-episode_length: List[int]  # Episode lenght per scene                                               
+episode_length: List[int]  # Episode length per scene                                               
 launch_tesse: bool         # True to run the simulator as subprocesses. Otherwise, it must run externally     
 random_seeds: List[int]    # Random seed for each episode to ensure repeatability                                               
 ```      
@@ -164,8 +164,6 @@ python eval.py --env-config PATH_TO_ENVIRONMENT_CONFIG --agent-config PATH_TO_AG
 ## Examples
 
 ### Baseline Proximal Policy Optimization (PPO)
-
-**Note** Temporarily, you must be on tesse-gym branch [0.0.1-SNAPSHOT](https://github.mit.edu/TESS/tesse-gym/tree/0.1.1-SNAPSHOT)
 
 #### Installation
 
