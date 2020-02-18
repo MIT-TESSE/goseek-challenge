@@ -46,7 +46,7 @@ Agents are evaluated on the following criteria for each episode:
 
 A single episode score is:
 ```
-r + 0.1p - 0.1c/l - 0.1s/l
+r + 0.1p - 0.1c/l - 0.1a/l
 ```
 where `l` is the maximum episode length (400). Note that an episode terminates early if all fruit are collected.
 
@@ -71,7 +71,7 @@ We recommend that you follow this repository to be alerted to these announcement
 
 ## Getting Started
 
-Complete installation instructions can be found in [Instructions.md](Instructions.md), which lays out prerequisites, provides a link to download the competition simulator, and describes steps to install all required competition software. 
+Complete installation instructions can be found [here](Instructions.md), which lays out prerequisites, provides a link to download the competition simulator, and describes steps to install all required competition software. 
 Users can also find an example for training an RL agent here, as well.
 
 ## Participation
@@ -80,26 +80,12 @@ Participants will upload docker containers with their agents to EvalAI in order 
 The number of submissions is limited for each user, so we highly recommend performing local evaluations prior to submitting online solutions. 
 This sections describes how to evaluate your agent locally, then submit online for a score.
 
+Before proceeding, we recommend that you have read through and completed [these instructions](Instructions.md).
+
 ### Local Evaluation
 
-*TODO: Define*
-
-
-#### Baseline PPO
-To evaluate a trained [Stable Baselines PPO agent](https://github.mit.edu/TESS/tesse-gym/blob/master/baselines/stable-baselines-ppo.ipynb):
-=======
-To evaluate a trained [Stable Baselines PPO agent](https://github.mit.edu/TESS/tesse-gym/blob/master/notebooks/stable-baselines-ppo.ipynb):
-
-1. Update `build_path` in `goseek-config/goseek.yaml` with the path to your local simulator build
-
-2. Update `weights` in `baselines/config/stable-baselines-ppo.yaml` with the path to your agent's weights
-
-3. Run the evaluation script:
-
-```sh
-python eval.py --env-config gosee-config/goseek.yaml --agent-config baselines/config/stable-baselines-ppo.yaml
-```
-
+- evaluate against ground truth
+- evaluate against kimera
 
 ### Online Submission
 
