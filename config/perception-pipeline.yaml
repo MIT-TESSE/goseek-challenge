@@ -1,0 +1,11 @@
+ENV:
+  sim_path: ''
+  ground_truth_mode: false
+  metadata_port: 9007
+  image_port: 9008
+
+EPISODE:
+  scenes: [3, 5]
+  n_targets: [30, 30]
+  episode_length: [400, 400]
+  random_seeds: [10, 100]

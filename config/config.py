@@ -11,11 +11,11 @@ _C.ENV.step_port = 9005
 _C.ENV.ground_truth_mode = True
 
 _C.EPISODE = CN()
-_C.EPISODE.scenes = [3, 5]
+_C.EPISODE.scenes = [1, 2, 3, 4, 5]
 _C.EPISODE.success_dist = 2
-_C.EPISODE.n_targets = [30, 30]
-_C.EPISODE.episode_length = [400, 400]
-_C.EPISODE.random_seeds = [10, 100]
+_C.EPISODE.n_targets = [30, 30, 30, 30, 30]
+_C.EPISODE.episode_length = [400, 400, 400, 400, 400]
+_C.EPISODE.random_seeds = [10, 100, 1000, 10000, 100000]
 
 
 def get_cfg_defaults():

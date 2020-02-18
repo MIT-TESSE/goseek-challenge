@@ -41,21 +41,22 @@ RUN /opt/conda/bin/conda update -n base -c defaults conda
 ENV PATH /opt/conda/envs/python37/bin:/opt/conda/envs/bin:$PATH
 
 RUN pip install opencv-python
+# JDG temporary
+RUN pip install gym
+RUN pip install yacs
+RUN pip install defusedxml
 
 # tested with goseek-0.0.2
 # TODO(MMAZ) replace with clone
 COPY tesse-gym  /tesse-gym
 COPY tesse-interface /tesse-interface
-COPY goseek-challenge /goseek-challenge
 WORKDIR /tesse-interface
-RUN cd python && \
-    python setup.py install
+RUN python setup.py install
 WORKDIR /tesse-gym
-RUN pip install -r requirements.txt
-RUN python setup.py develop
+RUN python setup.py install
+
+COPY goseek-challenge /goseek-challenge
 WORKDIR /goseek-challenge
-# TODO(MMAZ) temporary:
-RUN git checkout feature/eval
 
 
 #########################################################################################
