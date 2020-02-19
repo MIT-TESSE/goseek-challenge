@@ -35,8 +35,7 @@ conda create -n goseek python=3.7 ipython jupyter
 conda activate goseek
 ```
 
-2. Install tesse-gym
-
+2. Install tesse-gym.
 ```sh
 git clone git@github.mit.edu:TESS/tesse-gym.git -b 0.1.1-SNAPSHOT
 cd tesse-gym
@@ -49,6 +48,8 @@ python setup.py develop
 
 cd ..
 ```
+Note that we recommend installing in [development mode](https://setuptools.readthedocs.io/en/latest/setuptools.html#development-mode) in case you wish to make any local modifications. 
+See [below](#training) for further discussion.
 
 
 2. Clone this repository and install requirements.
@@ -69,7 +70,7 @@ unzip simulator/goseek-v0.1.0.zip -d simulator
 chmod +x simulator/goseek-v0.1.0.x86_64
 ```
 
-This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable. Note that if you choose to place the simulator in an alternative location, you will need to modify `goseek-config/goseek.yaml` to reflect that location.
+This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable. Note that if you choose to place the simulator in an alternative location, you will need to specify the location in a configuration file that overrides the default [value](https://github.mit.edu/TESS/goseek-challenge/blob/feature/eval/config/config.py).
 
 4. Test your installation by running a random agent. The agent receives observations and takes random actions:
 
