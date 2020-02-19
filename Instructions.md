@@ -238,10 +238,8 @@ See `tesse-gym/baselines/goseek-ppo.ipynb` to train a PPO agent for the GOSEEK c
 Once trained, you can evaluate your model with the same pipeline used for the random agent above. Simply update `goseek-challenge/baselines/config/baseline-ppo.yaml` with the path to the trained weights for your agent, this will be loaded by the `StableBaselinesPPO` agent defined in `baselines/agents.py`. Evaluate by running
 
 ```sh
-python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/ppo-agent.yaml
+python eval.py --agent-config baselines/config/ppo-agent.yaml
 ```
-
-
 
 
 
