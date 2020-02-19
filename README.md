@@ -96,7 +96,7 @@ docker build -t submission .
 
 ### Test locally
 
-Use `test-locally.py` for local testing.
+Use `test_locally.py` for local testing.
 
 Assume you've named your docker image `submission` as above, then evaluate your agent with __Ground Truth__ data as follows.
 ```sh
