@@ -4,13 +4,13 @@ These instructions will get your local machine setup to train, test, and submit 
 
 Contents:
 
-* [Prerequisites](#Prerequisites)
-* [Installation](#Installation)
-* [Usage](#Usage)
-   * [Local Evaluation](#Local-Evaluation)
-   * [Training](#Training)
-   * [Prepare Docker Submission](#Prepare-Docker-Submission)
-* [Examples](#Examples)
+* [Prerequisites](#prerequisites)
+* [Installation](#installation)
+* [Usage](#usage)
+   * [Local Evaluation](#local-evaluation)
+   * [Training](#training)
+   * [Prepare Docker Submission](#prepare-docker-submission)
+* [Examples](#examples)
 
 
 ## Prerequisites
@@ -89,6 +89,8 @@ __NOTE__: In order to run the perception pipeline, you will need another docker 
 
 ## Usage
 
+__TODO__: Update Local Evaluation and Training subsections with more detailed usage instructions.
+
 ### Local Evaluation
 
 
@@ -164,7 +166,7 @@ python eval.py --episode-config EPISODE_CONFIG --agent-config AGENT_CONFIG
 
 ### Training
 
-- This is mostly just notes....
+__TODO__: This is mostly just notes....
 
 We've provided a complete example [below](#baseline-proximal-policy-optimization) demonstrating how to train and evaluate a PPO agent with [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/).
 
@@ -186,9 +188,9 @@ optional arguments:
 Note the following.
 - We will run `eval.py` with an `EPISODE_CONFIG` value that points to a file we mount on the docker image with episode configuration information.
 Example configuration files, which are used for local testing, can be found in [config](config).
-- Uou are responsible for updating [baselines/agents.py](baselines/agents.py) to include their agent definitions.
-Participant code and any dependencies or additional files must incorporated into the docker image.
--We will also run `eval.py` with `AGENT_CONFIG` defineas as `agent.yaml`.
+- You are responsible for updating [baselines/agents.py](baselines/agents.py) to include your agent definition.
+Your code changes and any dependencies or additional files must be incorporated into the docker image.
+- We will also run `eval.py` with `AGENT_CONFIG` defined as `agent.yaml`.
 You are responsible for defining this file in the docker image.
 Note that if your policy does not require any configuration, then an empty file is acceptable.
 
