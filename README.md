@@ -85,8 +85,8 @@ Before proceeding, we recommend that you have read through and completed [these 
 ### Prepare submission
 
 1. Modify `Dockerfile` as appropriate for your agent.
+See [these instructions](Instructions.md#prepare-docker-submission) for modification details.
 The example we've provided runs an agent that randomly selects actions at each step.
-Note that we assume `agents.yaml` exists for any configuration of your agent.
 
 2. Build the docker image. Here we are naming the image `submission`.
 ```
@@ -97,7 +97,7 @@ docker build -t submission .
 
 Use `test-locally.py` for local testing.
 
-Assume you've named your docker image `submission` as above, then evaluate your agent with ground truth data as follows
+Assume you've named your docker image `submission` as above, then evaluate your agent with ground truth data as follows.
 ```sh
 python test_locally.py -s simulator/goseek-v0.1.0.x86_64 -i submission -g
 ```
