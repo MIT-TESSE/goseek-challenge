@@ -37,7 +37,7 @@ conda activate goseek
 
 2. Install tesse-gym.
 ```sh
-git clone git@github.mit.edu:TESS/tesse-gym.git -b 0.1.1-SNAPSHOT
+git clone git@github.mit.edu:TESS/tesse-gym.git
 cd tesse-gym
 
 # install tesse-gym requirements
