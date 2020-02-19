@@ -145,13 +145,23 @@ custom_field_n: VALUE_N
 ```
 
 
-3. Run the evaluation script.
+### Training
 
+__TODO__: This is mostly just notes....
 
-```sh
-python eval.py --episode-config EPISODE_CONFIG --agent-config AGENT_CONFIG
+We've provided a complete example [below](#baseline-proximal-policy-optimization) demonstrating how to train and evaluate a PPO agent with [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/).
+
+### Prepare Docker Submission
+
+Competition submission are submitted as docker image, which you are responsible for preparing.
+
+We will run [eval.py](eval.py) on a participant docker image, which has the following usage.
+>>>>>>> master
 ```
+usage: eval.py [-h] [--episode-config EPISODE_CONFIG]
+               [--agent-config AGENT_CONFIG]
 
+<<<<<<< HEAD
 ### Training
 
 __TODO__: This is mostly just notes....
@@ -190,6 +200,31 @@ It also copies a configuration file for the `RandomAgent` to `agent.yaml`.
 
 Update this file as appropriate for your agent.
 
+=======
+optional arguments:
+  -h, --help            show this help message and exit
+  --episode-config EPISODE_CONFIG
+  --agent-config AGENT_CONFIG
+```
+
+Note the following.
+- We will run `eval.py` with an `EPISODE_CONFIG` value that points to a file we mount on the docker image with episode configuration information.
+Example configuration files, which are used for local testing, can be found in [config](config).
+- You are responsible for updating [baselines/agents.py](baselines/agents.py) to include your agent definition.
+Your code changes and any dependencies or additional files must be incorporated into the docker image.
+- We will also run `eval.py` with `AGENT_CONFIG` defined as `agent.yaml`.
+You are responsible for defining this file in the docker image.
+Note that if your policy does not require any configuration, then an empty file is acceptable.
+
+#### Create docker image
+
+This repository has a [Dockerfile](Dockerfile) that specifies a `RandomAgent`.
+It copies `baselines/agents.py`, which defines the `RandomAgent`.
+It also copies a configuration file for the `RandomAgent` to `agent.yaml`.
+
+Update this file as appropriate for your agent.
+
+>>>>>>> master
 When complete, build your docker image.
 ```sh
 docker build -t submission .
