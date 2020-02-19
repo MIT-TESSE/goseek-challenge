@@ -48,7 +48,7 @@ python setup.py develop
 
 cd ..
 ```
-Note that we recommend installing in [development mode](https://setuptools.readthedocs.io/en/latest/setuptools.html#development-mode) in case you wish to make any local modifications. 
+Note that we recommend installing in [development mode](https://setuptools.readthedocs.io/en/latest/setuptools.html#development-mode) in case you wish to make any local modifications.
 See [below](#training) for further discussion.
 
 
@@ -69,6 +69,7 @@ wget --no-proxy https://llcad-github.llan.ll.mit.edu/TESS/tesse-icra2020-competi
 unzip simulator/goseek-v0.1.0.zip -d simulator
 chmod +x simulator/goseek-v0.1.0.x86_64
 ```
+__TEMPORARY NOTE__: The above only works on Lincoln's network. For MIT users, please manually download the zip file from https://github.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip.
 
 This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable. Note that if you choose to place the simulator in an alternative location, you will need to specify the location in a configuration file that overrides the default [value](https://github.mit.edu/TESS/goseek-challenge/blob/feature/eval/config/config.py).
 
@@ -138,8 +139,8 @@ class Agent:
 
 2. Define configuration files
 
-All configurations required by the agent must be specified by a YAML file. This file must contain the field `name`, 
-specifying the agent class name. All other fields will be passed as keyword arguments to the agent's class constructor 
+All configurations required by the agent must be specified by a YAML file. This file must contain the field `name`,
+specifying the agent class name. All other fields will be passed as keyword arguments to the agent's class constructor
 upon initialization. An example is below:
 
 ```yaml
