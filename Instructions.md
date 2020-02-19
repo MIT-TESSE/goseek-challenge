@@ -132,22 +132,9 @@ class Agent:
 
 2. Define configuration files
 
-* env-config: A yaml file specifying episode configuration. This contains the fields:
-
-```yaml
-# GOSEEK environment configuration
-build_path: str            # Path to simulator build
-scenes: List[int]          # Scenes to run. Note: scenes can be listed twice
-success_dist: int          # Distance from target to be considered found
-n_targets: List[int]       # Number of targets per scene
-episode_length: List[int]  # Episode length per scene
-launch_tesse: bool         # True to run the simulator as subprocesses. Otherwise, it must run externally
-random_seeds: List[int]    # Random seed for each episode to ensure repeatability
-```
-
-* agent-config: A YAML file specifying agent configuration.
-
-The file must contain the field `name`, specifying the agent's class name. All other fields will be passed as keyword arguments to the agent upon construction. An example is below:
+All configurations required by the agent must be specified by a YAML file. This file must contain the field `name`, 
+specifying the agent class name. All other fields will be passed as keyword arguments to the agent's class constructor 
+upon initialization. An example is below:
 
 ```yaml
 # example-configuration.yaml
