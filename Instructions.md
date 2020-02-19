@@ -21,7 +21,7 @@ Using [Anaconda](https://www.anaconda.com/distribution/#download-section) or [mi
 Python 3.7 is required.
 
 Participating in the competition requires Docker, as well.
-The perception pipeline is defined in a Docker container.
+The __Perception Pipeline__ is defined in a Docker container.
 Participant policies are also submitted as Docker containers.
 Install [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and then install [`nvidia-docker`](https://github.com/NVIDIA/nvidia-docker#quickstart) on your host machine.
 Note that if you are behind a proxy, please [follow these instructions on configuring the docker client](https://docs.docker.com/network/proxy/#configure-the-docker-client) to use your organization's proxy settings.
@@ -85,7 +85,7 @@ cd docker/goseek-base
 docker build -t goseek-base .
 ```
 
-__NOTE__: In order to run the perception pipeline, you will need another docker image with [Kimera](https://github.com/MIT-SPARK/Kimera). Directions for building this image (named `goseek-kimera`) will be poster at a later time.
+__NOTE__: In order to run the __Perception Pipeline__, you will need another docker image with [Kimera](https://github.com/MIT-SPARK/Kimera). Directions for building this image (named `goseek-kimera`) will be poster at a later time.
 
 
 ## Usage
@@ -224,7 +224,7 @@ optional arguments:
   -p, --perception      Use realistic perception for observations
 ```
 
-For example, you can run the following to test against ground truth data:
+For example, you can run the following to test against __Ground Truth__ data source:
 ```sh
 python test_locally.py -s simulator/goseek-v0.1.0.x86_64 -i submission -g
 ```
