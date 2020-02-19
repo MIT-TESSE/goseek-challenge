@@ -1,0 +1,8 @@
+ENV:
+  sim_path: ''
+
+EPISODE:
+  scenes: [3, 5]
+  n_targets: [30, 30]
+  episode_length: [400, 400]
+  random_seeds: [10, 100]

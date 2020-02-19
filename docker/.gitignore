@@ -1,0 +1,8 @@
+*.tar.gz
+gym-ros-interface/
+semantic-segmentation-ros/
+tesse-gym/
+tesse-interface/
+goseek-challenge/
+work/
+stable-baselines-ppo-*.pkl
