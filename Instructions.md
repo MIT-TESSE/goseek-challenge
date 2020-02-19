@@ -1,6 +1,6 @@
 # GOSEEK Instructions
 
-These instructions will get your local machine setup to train, test, and submit solutions for the [GOSEEK challenge](README.md). 
+These instructions will get your local machine setup to train, test, and submit solutions for the [GOSEEK challenge](README.md).
 
 Contents:
 
@@ -17,18 +17,18 @@ Contents:
 
 The competition requires that you use linux.
 
-Using [Anaconda](https://www.anaconda.com/distribution/#download-section) or [miniconda](https://docs.conda.io/en/latest/miniconda.html) is highly recommended. 
+Using [Anaconda](https://www.anaconda.com/distribution/#download-section) or [miniconda](https://docs.conda.io/en/latest/miniconda.html) is highly recommended.
 Python 3.7 is required.
 
-Participating in the competition requires Docker, as well. 
-The perception pipeline is defined in a Docker container. 
+Participating in the competition requires Docker, as well.
+The perception pipeline is defined in a Docker container.
 Participant policies are also submitted as Docker containers.
-Install [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and then install [`nvidia-docker`](https://github.com/NVIDIA/nvidia-docker#quickstart) on your host machine. 
+Install [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and then install [`nvidia-docker`](https://github.com/NVIDIA/nvidia-docker#quickstart) on your host machine.
 Note that if you are behind a proxy, please [follow these instructions on configuring the docker client](https://docs.docker.com/network/proxy/#configure-the-docker-client) to use your organization's proxy settings.
 
 ## Installation
 
-1. If using conda, create a new conda environment: 
+1. If using conda, create a new conda environment:
 
 ```sh
 conda create -n goseek python=3.7 ipython jupyter
@@ -71,10 +71,10 @@ chmod +x simulator/goseek-v0.1.0.x86_64
 
 This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable. Note that if you choose to place the simulator in an alternative location, you will need to modify `goseek-config/goseek.yaml` to reflect that location.
 
-4. Test your installation by running a random agent. The agent receives observations and takes random actions: 
+4. Test your installation by running a random agent. The agent receives observations and takes random actions:
 
 ```sh
-python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/random-agent.yaml
+python eval.py --agent-config baselines/config/random-agent.yaml
 ```
 
 5. Next, build a docker image called `goseek-base`, which is needed to submit online solutions.
@@ -84,7 +84,7 @@ cd docker/goseek-base
 docker build -t goseek-base .
 ```
 
-6. In order to run the perception pipeline, you will need another docker image with [Kimera](https://github.com/MIT-SPARK/Kimera). Directions for building this image (named `goseek-kimera`) will be poster at a later time.
+__NOTE__: In order to run the perception pipeline, you will need another docker image with [Kimera](https://github.com/MIT-SPARK/Kimera). Directions for building this image (named `goseek-kimera`) will be poster at a later time.
 
 
 ## Usage
@@ -101,13 +101,13 @@ class Agent:
 
     def act(self, observation: np.ndarray) -> int:
         """ Act upon an environment observation.
-        
-        The observation is given as a vector of shape (384003,). 
+
+        The observation is given as a vector of shape (384003,).
         The first 384000 values contain RGB, depth, and segmentation images,
-        the last three contain pose in (x, y, heading). 
-        
+        the last three contain pose in (x, y, heading).
+
         An example of decoding this in numpy:
-        
+
         >>> imgs = observation[:-3].reshape(240, 320, 5)
         >>> rgb = imgs[... :3]
         >>> segmentation = imgs[...,  3]
@@ -133,14 +133,14 @@ class Agent:
 
 ```yaml
 # GOSEEK environment configuration
-build_path: str            # Path to simulator build                                          
+build_path: str            # Path to simulator build
 scenes: List[int]          # Scenes to run. Note: scenes can be listed twice
-success_dist: int          # Distance from target to be considered found         
-n_targets: List[int]       # Number of targets per scene   
-episode_length: List[int]  # Episode length per scene                                               
-launch_tesse: bool         # True to run the simulator as subprocesses. Otherwise, it must run externally     
-random_seeds: List[int]    # Random seed for each episode to ensure repeatability                                               
-```      
+success_dist: int          # Distance from target to be considered found
+n_targets: List[int]       # Number of targets per scene
+episode_length: List[int]  # Episode length per scene
+launch_tesse: bool         # True to run the simulator as subprocesses. Otherwise, it must run externally
+random_seeds: List[int]    # Random seed for each episode to ensure repeatability
+```
 
 * agent-config: A YAML file specifying agent configuration.
 
@@ -159,7 +159,7 @@ custom_field_n: VALUE_N
 
 
 ```sh
-python eval.py --env-config PATH_TO_ENVIRONMENT_CONFIG --agent-config PATH_TO_AGENT_CONFIG
+python eval.py --episode-config EPISODE_CONFIG --agent-config AGENT_CONFIG
 ```
 
 ### Training
@@ -169,7 +169,62 @@ python eval.py --env-config PATH_TO_ENVIRONMENT_CONFIG --agent-config PATH_TO_AG
 We've provided a complete example [below](#baseline-proximal-policy-optimization) demonstrating how to train and evaluate a PPO agent with [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/).
 
 ### Prepare Docker Submission
-**TODO**
+
+Competition submission are submitted as docker image, which you are responsible for preparing.
+
+We will run [eval.py](eval.py) on a participant docker image, which has the following usage.
+```
+usage: eval.py [-h] [--episode-config EPISODE_CONFIG]
+               [--agent-config AGENT_CONFIG]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --episode-config EPISODE_CONFIG
+  --agent-config AGENT_CONFIG
+```
+
+Note the following.
+- We will run `eval.py` with an `EPISODE_CONFIG` value that points to a file we mount on the docker image with episode configuration information.
+Example configuration files, which are used for local testing, can be found in [config](config).
+- Uou are responsible for updating [baselines/agents.py](baselines/agents.py) to include their agent definitions.
+Participant code and any dependencies or additional files must incorporated into the docker image.
+-We will also run `eval.py` with `AGENT_CONFIG` defineas as `agent.yaml`.
+You are responsible for defining this file in the docker image.
+Note that if your policy does not require any configuration, then an empty file is acceptable.
+
+#### Create docker image
+
+This repository has a [Dockerfile](Dockerfile) that specifies a `RandomAgent`.
+It copies `baselines/agents.py`, which defines the `RandomAgent`.
+It also copies a configuration file for the `RandomAgent` to `agent.yaml`.
+
+Update this file as appropriate for your agent.
+
+When complete, build your docker image.
+```sh
+docker build -t submission .
+```
+
+#### Test docker image
+
+You can test your docker image locally using [test_locally.py](test_locally.py). It has the following usage.
+```
+usage: test_locally.py [-h] -s SIMULATOR -i IMAGE (-g | -p)
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SIMULATOR, --simulator SIMULATOR
+                        Path to the simulator binary
+  -i IMAGE, --image IMAGE
+                        Name of the docker image to use for local evaluation
+  -g, --groundtruth     Use groundtruth observations
+  -p, --perception      Use realistic perception for observations
+```
+
+For example, you can run the following to test against ground truth data:
+```sh
+python test_locally.py -s simulator/goseek-v0.1.0.x86_64 -i submission -g
+```
 
 
 ## Examples
@@ -188,16 +243,16 @@ pip install stable-baselines
 
 #### Training
 
-See `tesse-gym/baselines/goseek-ppo.ipynb` to train a PPO agent for the GOSEEK challenge. The notebook details how to: 
+See `tesse-gym/baselines/goseek-ppo.ipynb` to train a PPO agent for the GOSEEK challenge. The notebook details how to:
 
 * Configure a `tesse-gym` environment
 * Define a policy
 * Train a model
-* Visualize results 
+* Visualize results
 
 #### Local Evaluation
 
-Once trained, you can evaluate your model with the same pipeline used for the random agent above. Simply update `goseek-challenge/baselines/config/baseline-ppo.yaml` with the path to the trained weights for your agent, this will be loaded by the `StableBaselinesPPO` agent defined in `baselines/agents.py`. Evaluate by running 
+Once trained, you can evaluate your model with the same pipeline used for the random agent above. Simply update `goseek-challenge/baselines/config/baseline-ppo.yaml` with the path to the trained weights for your agent, this will be loaded by the `StableBaselinesPPO` agent defined in `baselines/agents.py`. Evaluate by running
 
 ```sh
 python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/ppo-agent.yaml
