@@ -9,7 +9,7 @@ Contents:
 * [Usage](#Usage)
    * [Training](#Training)
    * [Local Evaluation](#Local-Evaluation)
-   * [Prepare Docker Submission](#Docker-Submission)
+   * [Prepare Docker Submission](#Prepare-Docker-Submission)
 * [Examples](#Examples)
 
 
@@ -150,7 +150,7 @@ custom_field_1: VALUE_1
 custom_field_n: VALUE_N
 ```
 
-### Docker Submission
+### Prepare Docker Submission
 
 Competition submission are submitted as docker image, which you are responsible for preparing.
 
