@@ -4,13 +4,13 @@ These instructions will get your local machine setup to train, test, and submit 
 
 Contents:
 
-* [Prerequisites](#prerequisites)
-* [Installation](#installation)
-* [Usage](#usage)
-   * [Local Evaluation](#local-evaluation)
-   * [Training](#training)
-   * [Prepare Docker Submission](#prepare-docker-submission)
-* [Examples](#examples)
+* [Prerequisites](#Prerequisites)
+* [Installation](#Installation)
+* [Usage](#Usage)
+   * [Training](#Training)
+   * [Local Evaluation](#Local-Evaluation)
+   * [Prepare Docker Submission](#Docker-Submission)
+* [Examples](#Examples)
 
 
 ## Prerequisites
@@ -92,8 +92,14 @@ __NOTE__: In order to run the __Perception Pipeline__, you will need another doc
 
 __TODO__: Update Local Evaluation and Training subsections with more detailed usage instructions.
 
-### Local Evaluation
+### Training
 
+__TODO__: This is mostly just notes....
+
+We've provided a complete example [below](#baseline-proximal-policy-optimization) demonstrating how to train and evaluate a PPO agent with [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/).
+
+
+### Local Evaluation
 
 1. Implement the following interface in `baselines/agents.py`.
 
@@ -144,13 +150,7 @@ custom_field_1: VALUE_1
 custom_field_n: VALUE_N
 ```
 
-### Training
-
-__TODO__: This is mostly just notes....
-
-We've provided a complete example [below](#baseline-proximal-policy-optimization) demonstrating how to train and evaluate a PPO agent with [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/).
-
-### Prepare Docker Submission
+### Docker Submission
 
 Competition submission are submitted as docker image, which you are responsible for preparing.
 
@@ -178,7 +178,7 @@ Note that if your policy does not require any configuration, then an empty file 
 #### Create docker image
 
 This repository has a [Dockerfile](Dockerfile) that specifies a `RandomAgent`.
-It copies `baselines/agents.py`, which defines the `RandomAgent`.
+It copies `baselines/agents.py`, which defines the `RandomAgTrainingent`.
 It also copies a configuration file for the `RandomAgent` to `agent.yaml`.
 
 Update this file as appropriate for your agent.
