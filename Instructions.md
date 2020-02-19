@@ -144,23 +144,6 @@ custom_field_1: VALUE_1
 custom_field_n: VALUE_N
 ```
 
-
-### Training
-
-__TODO__: This is mostly just notes....
-
-We've provided a complete example [below](#baseline-proximal-policy-optimization) demonstrating how to train and evaluate a PPO agent with [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/).
-
-### Prepare Docker Submission
-
-Competition submission are submitted as docker image, which you are responsible for preparing.
-
-We will run [eval.py](eval.py) on a participant docker image, which has the following usage.
-```
-usage: eval.py [-h] [--episode-config EPISODE_CONFIG]
-               [--agent-config AGENT_CONFIG]
-```
-
 ### Training
 
 __TODO__: This is mostly just notes....
