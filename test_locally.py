@@ -79,7 +79,7 @@ if __name__ == "__main__":
             "python eval.py --episode-config /config/ground-truth.yaml --agent-config agent.yaml",
         ]
     )
-    print(output.decode('utf-8'))
+    print(output.decode("utf-8"))
 
     # cleanup
     sim.terminate()
