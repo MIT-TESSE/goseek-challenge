@@ -4,13 +4,13 @@ These instructions will get your local machine setup to train, test, and submit 
 
 Contents:
 
-* [Prerequisites](#prerequisites)
-* [Installation](#installation)
-* [Usage](#usage)
-   * [Local Evaluation](#local-evaluation)
-   * [Training](#training)
-   * [Prepare Docker Submission](#prepare-docker-submission)
-* [Examples](#examples)
+* [Prerequisites](#Prerequisites)
+* [Installation](#Installation)
+* [Usage](#Usage)
+   * [Training](#Training)
+   * [Local Evaluation](#Local-Evaluation)
+   * [Prepare Docker Submission](#Prepare-Docker-Submission)
+* [Examples](#Examples)
 
 
 ## Prerequisites
@@ -92,8 +92,14 @@ __NOTE__: In order to run the __Perception Pipeline__, you will need another doc
 
 __TODO__: Update Local Evaluation and Training subsections with more detailed usage instructions.
 
-### Local Evaluation
+### Training
 
+__TODO__: This is mostly just notes....
+
+We've provided a complete example [below](#baseline-proximal-policy-optimization) demonstrating how to train and evaluate a PPO agent with [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/).
+
+
+### Local Evaluation
 
 1. Implement the following interface in `baselines/agents.py`.
 
@@ -132,22 +138,9 @@ class Agent:
 
 2. Define configuration files
 
-* env-config: A yaml file specifying episode configuration. This contains the fields:
-
-```yaml
-# GOSEEK environment configuration
-build_path: str            # Path to simulator build
-scenes: List[int]          # Scenes to run. Note: scenes can be listed twice
-success_dist: int          # Distance from target to be considered found
-n_targets: List[int]       # Number of targets per scene
-episode_length: List[int]  # Episode length per scene
-launch_tesse: bool         # True to run the simulator as subprocesses. Otherwise, it must run externally
-random_seeds: List[int]    # Random seed for each episode to ensure repeatability
-```
-
-* agent-config: A YAML file specifying agent configuration.
-
-The file must contain the field `name`, specifying the agent's class name. All other fields will be passed as keyword arguments to the agent upon construction. An example is below:
+All configurations required by the agent must be specified by a YAML file. This file must contain the field `name`, 
+specifying the agent class name. All other fields will be passed as keyword arguments to the agent's class constructor 
+upon initialization. An example is below:
 
 ```yaml
 # example-configuration.yaml
@@ -156,20 +149,6 @@ custom_field_1: VALUE_1
 ...
 custom_field_n: VALUE_N
 ```
-
-
-3. Run the evaluation script.
-
-
-```sh
-python eval.py --episode-config EPISODE_CONFIG --agent-config AGENT_CONFIG
-```
-
-### Training
-
-__TODO__: This is mostly just notes....
-
-We've provided a complete example [below](#baseline-proximal-policy-optimization) demonstrating how to train and evaluate a PPO agent with [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/).
 
 ### Prepare Docker Submission
 
@@ -186,6 +165,7 @@ optional arguments:
   --agent-config AGENT_CONFIG
 ```
 
+
 Note the following.
 - We will run `eval.py` with an `EPISODE_CONFIG` value that points to a file we mount on the docker image with episode configuration information.
 Example configuration files, which are used for local testing, can be found in [config](config).
@@ -198,7 +178,7 @@ Note that if your policy does not require any configuration, then an empty file 
 #### Create docker image
 
 This repository has a [Dockerfile](Dockerfile) that specifies a `RandomAgent`.
-It copies `baselines/agents.py`, which defines the `RandomAgent`.
+It copies `baselines/agents.py`, which defines the `RandomAgTrainingent`.
 It also copies a configuration file for the `RandomAgent` to `agent.yaml`.
 
 Update this file as appropriate for your agent.
@@ -258,10 +238,8 @@ See `tesse-gym/baselines/goseek-ppo.ipynb` to train a PPO agent for the GOSEEK c
 Once trained, you can evaluate your model with the same pipeline used for the random agent above. Simply update `goseek-challenge/baselines/config/baseline-ppo.yaml` with the path to the trained weights for your agent, this will be loaded by the `StableBaselinesPPO` agent defined in `baselines/agents.py`. Evaluate by running
 
 ```sh
-python eval.py --env-config goseek-config/goseek.yaml --agent-config baselines/config/ppo-agent.yaml
+python eval.py --agent-config baselines/config/ppo-agent.yaml
 ```
-
-
 
 
 
