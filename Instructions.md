@@ -31,7 +31,7 @@ Note that if you are behind a proxy, please [follow these instructions on config
 1. If using conda, create a new conda environment:
 
 ```sh
-conda create -n goseek python=3.7 ipython jupyter
+conda create -n goseek python=3.7 ipython jupyter numpy scipy
 conda activate goseek
 ```
 
