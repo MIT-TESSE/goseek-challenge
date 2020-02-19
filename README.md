@@ -1,6 +1,6 @@
 # goseek-challenge
 
-Welcome to the GOSEEK challenge page, which is run in conjunction with [Perception, Action, Learning Workshop](https://mit-spark.github.io/PAL-ICRA2020/) at [ICRA 2020](www.icra2020.org).
+Welcome to the GOSEEK challenge page, which is run in conjunction with [Perception, Action, Learning Workshop](https://mit-spark.github.io/PAL-ICRA2020/) at [ICRA 2020](https://www.icra2020.org/competitions/goseek-challenge).
 
 For this competition, participants create a reinforcement learning (RL) agent that combines perception and high-level decision-making to search for objects placed within complex indoor environments from a Unity-based simulator.
 Simply put: like PACMAN, but in a realistic scene and with realistic perception capabilities.
