@@ -29,10 +29,8 @@ import yaml
 from baselines.agents import *  # specific agent is given in agent-config
 from tesse_gym import NetworkConfig
 from tesse_gym.eval.agent import Agent
-from tesse_gym.eval.goseek_benchmark import GoSeekBenchmark
+from tesse_gym.tasks.goseek import GoSeekBenchmark, get_goseek_cfg_defaults
 from tesse_gym.eval.utils import get_agent_cls
-
-from config.config import get_cfg_defaults
 
 
 def main(
@@ -69,7 +67,7 @@ def main(
 
 
 if __name__ == "__main__":
-    episode_cfg = get_cfg_defaults()
+    episode_cfg = get_goseek_cfg_defaults()
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--episode-config", type=str)
