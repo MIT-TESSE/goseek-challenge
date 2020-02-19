@@ -32,6 +32,7 @@ We provide two data sources for training:
 Note that the types (and dimensions) of observations provided are the same as before; however, the error characteristics are now representative of a real perception system.
 
 Participants can use either or both of these sources for training their agents.
+Agent interfaces are identical between the two sources.
 We'll accept online submissions against either source (see [below](#online-submission) for details) and maintain a leaderboard for both.
 However, only evaluations against the __Perception Pipeline__ will be used to declare an overvall competition winner.
 
@@ -59,8 +60,8 @@ Note that evaluations occur on witheld office scenes.
 
 The timeline for the competition is as follows:
 
-- __Now until Mid-March__: Competition software available for local testing and training by participants.
-- __Mid-March__: Instructions for online submissions made available to participants.
+- __Now until Mid-March__: Competition software available for local testing and training by participants with __Ground Truth__ data source.
+- __Mid-March__: __Perception Pipeline__ data source provided to participants. Instructions for online submissions also made available.
 - __April 30__: Online submission period ends.
 - __May 31__: Workshop date. Competition winner invited to provide keynote presentation.
 
@@ -97,12 +98,12 @@ docker build -t submission .
 
 Use `test-locally.py` for local testing.
 
-Assume you've named your docker image `submission` as above, then evaluate your agent with ground truth data as follows.
+Assume you've named your docker image `submission` as above, then evaluate your agent with __Ground Truth__ data as follows.
 ```sh
 python test_locally.py -s simulator/goseek-v0.1.0.x86_64 -i submission -g
 ```
 
-__NOTE__: Instructions for testing your agent with the perception timeline will be posted shortly.
+__NOTE__: Instructions for testing your agent with the __Perception Pipeline__ will be posted shortly.
 
 ### Submit online.
 
