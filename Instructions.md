@@ -182,29 +182,6 @@ optional arguments:
   --agent-config AGENT_CONFIG
 ```
 
-Note the following.
-- We will run `eval.py` with an `EPISODE_CONFIG` value that points to a file we mount on the docker image with episode configuration information.
-Example configuration files, which are used for local testing, can be found in [config](config).
-- You are responsible for updating [baselines/agents.py](baselines/agents.py) to include your agent definition.
-Your code changes and any dependencies or additional files must be incorporated into the docker image.
-- We will also run `eval.py` with `AGENT_CONFIG` defined as `agent.yaml`.
-You are responsible for defining this file in the docker image.
-Note that if your policy does not require any configuration, then an empty file is acceptable.
-
-#### Create docker image
-
-This repository has a [Dockerfile](Dockerfile) that specifies a `RandomAgent`.
-It copies `baselines/agents.py`, which defines the `RandomAgent`.
-It also copies a configuration file for the `RandomAgent` to `agent.yaml`.
-
-Update this file as appropriate for your agent.
-
-=======
-optional arguments:
-  -h, --help            show this help message and exit
-  --episode-config EPISODE_CONFIG
-  --agent-config AGENT_CONFIG
-```
 
 Note the following.
 - We will run `eval.py` with an `EPISODE_CONFIG` value that points to a file we mount on the docker image with episode configuration information.
