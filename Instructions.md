@@ -156,12 +156,11 @@ We've provided a complete example [below](#baseline-proximal-policy-optimization
 Competition submission are submitted as docker image, which you are responsible for preparing.
 
 We will run [eval.py](eval.py) on a participant docker image, which has the following usage.
->>>>>>> master
 ```
 usage: eval.py [-h] [--episode-config EPISODE_CONFIG]
                [--agent-config AGENT_CONFIG]
+```
 
-<<<<<<< HEAD
 ### Training
 
 __TODO__: This is mostly just notes....
@@ -224,7 +223,6 @@ It also copies a configuration file for the `RandomAgent` to `agent.yaml`.
 
 Update this file as appropriate for your agent.
 
->>>>>>> master
 When complete, build your docker image.
 ```sh
 docker build -t submission .
