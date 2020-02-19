@@ -179,7 +179,7 @@ Note that if your policy does not require any configuration, then an empty file 
 #### Create docker image
 
 This repository has a [Dockerfile](Dockerfile) that specifies a `RandomAgent`.
-It copies `baselines/agents.py`, which defines the `RandomAgTrainingent`.
+It copies `baselines/agents.py`, which defines the `RandomAgent`.
 It also copies a configuration file for the `RandomAgent` to `agent.yaml`.
 
 Update this file as appropriate for your agent.
