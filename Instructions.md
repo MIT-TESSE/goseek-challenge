@@ -219,11 +219,28 @@ python test_locally.py -s simulator/goseek-v0.1.0.x86_64 -i submission -g
 
 #### Installation
 
-Install [`tensorflow v1.1.14`](https://www.tensorflow.org/) and [`stable-baselines`](https://stable-baselines.readthedocs.io/en/master/):
+To run the example PPO baseline, install [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/) and a version of [Tensorflow](https://www.tensorflow.org/) between v0.8.0 and v1.14.0 (see the [Stable Baselines docs](https://stable-baselines.readthedocs.io/en/master/guide/install.html#prerequisites) for details).
+
+__Note__: Currently, we've tested Python 3.7 Tensorflow installation with Anaconda against Cuda 10.0 and Cuda 10.1 (run `nvcc -V` to check your Cuda version).
+
+For Cuda 10.0, we'd recommend installing `tensorflow-gpu v1.13.1`:
 
 ```sh
-conda activate goseek  # if using conda
-pip install tensorflow-gpu==1.14
+conda activate goseek 
+conda install tensorflow-gpu==1.13.1
+```
+
+For Cuda 10.1, we'd recommend installing `tensorflow-gpu v1.14`:
+
+```sh
+conda activate goseek 
+conda install tensorflow-gpu==1.14
+```
+
+Then, install [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/)
+
+```sh
+conda activate goseek 
 pip install stable-baselines
 ```
 
