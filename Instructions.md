@@ -221,7 +221,7 @@ python test_locally.py -s simulator/goseek-v0.1.0.x86_64 -i submission -g
 
 To run the example PPO baseline, install [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/) and a version of [Tensorflow](https://www.tensorflow.org/) between v0.8.0 and v1.14.0 (see the [Stable Baselines docs](https://stable-baselines.readthedocs.io/en/master/guide/install.html#prerequisites) for details).
 
-__Note__: Currently, we've tested Python 3.7 Tensorflow installation with Anaconda against Cuda 10.0 and Cuda 10.1 (run `nvidia-smi` to check your Cuda version).
+__Note__: Currently, we've tested Python 3.7 Tensorflow installation with Anaconda against Cuda 10.0 and Cuda 10.1 (run `nvcc -V` to check your Cuda version).
 
 For Cuda 10.0, we'd recommend installing `tensorflow-gpu v1.13.1`:
 
