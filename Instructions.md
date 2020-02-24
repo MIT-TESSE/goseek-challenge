@@ -89,7 +89,7 @@ docker build -t goseek-base .
 cd ../../
 ```
 
-__NOTE__: In order to run the __Perception Pipeline__, you will need another docker image with [Kimera](https://github.com/MIT-SPARK/Kimera). Directions for building this image (named `goseek-kimera`) will be poster at a later time.
+__NOTE__: In order to run the __Perception Pipeline__, you will need another docker image with [Kimera](https://github.com/MIT-SPARK/Kimera). Directions for building this image (named `goseek-kimera`) will be posted at a later time.
 
 
 ## Usage
