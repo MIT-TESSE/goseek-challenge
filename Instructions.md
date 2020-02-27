@@ -56,13 +56,12 @@ cd goseek-challenge
 
 3. Next, you need to obtain GOSEEK simulator. Execute the following:
 ```sh
-cd goseek-challenge
 mkdir -p simulator
-wget https://github.com/MIT-TESSE/goseek-challenge/releases/download/0.1.0/goseek-v0.1.0.zip -P simulator
+wget --no-proxy https://llcad-github.llan.ll.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip  --no-check-certificate -P simulator
 unzip simulator/goseek-v0.1.0.zip -d simulator
 chmod +x simulator/goseek-v0.1.0.x86_64
 ```
-__TEMPORARY NOTE__: `wget --no-proxy https://llcad-github.llan.ll.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip  --no-check-certificate -P simulator`
+__TEMPORARY NOTE__: The above only works on Lincoln's network. For MIT users, please manually download the zip file from https://github.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip.
 
 This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable. Note that if you choose to place the simulator in an alternative location, you will need to specify the location in a configuration file that overrides the default value such as in [config/ground-truth.yaml](config/ground-truth.yaml]. All configuration options are defined [here](../../../tesse-gym/src/tesse_gym/tasks/goseek/goseek_config.py).
 
@@ -76,6 +75,7 @@ python eval.py --agent-config baselines/config/random-agent.yaml
 
 ```sh
 cd docker/goseek-base/
+./temporary-clones.sh  # Note this is temporary
 docker build -t goseek-base .
 cd ../../
 ```
