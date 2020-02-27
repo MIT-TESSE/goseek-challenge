@@ -49,7 +49,7 @@ See [below](#training) for further discussion.
 2. Clone this repository and install requirements.
 
 ```sh
-git clone git@github.mit.edu:TESS/goseek-challenge.git
+git clone https://github.com/MIT-TESSE/goseek-challenge.git
 cd goseek-challenge
 ```
 
@@ -57,13 +57,13 @@ cd goseek-challenge
 3. Next, you need to obtain GOSEEK simulator. Execute the following:
 ```sh
 mkdir -p simulator
-wget --no-proxy https://llcad-github.llan.ll.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip  --no-check-certificate -P simulator
+wget https://github.com/MIT-TESSE/goseek-challenge/releases/download/0.1.0/goseek-v0.1.0.zip -P simulator
 unzip simulator/goseek-v0.1.0.zip -d simulator
 chmod +x simulator/goseek-v0.1.0.x86_64
 ```
-__TEMPORARY NOTE__: The above only works on Lincoln's network. For MIT users, please manually download the zip file from https://github.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip.
 
-This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable. Note that if you choose to place the simulator in an alternative location, you will need to specify the location in a configuration file that overrides the default value such as in [config/ground-truth.yaml](config/ground-truth.yaml]. All configuration options are defined [here](../../../tesse-gym/src/tesse_gym/tasks/goseek/goseek_config.py).
+This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable.
+Note that if you choose to place the simulator in an alternative location, you will need to specify the location in a configuration file that overrides the default value such as in [config/ground-truth.yaml](config/ground-truth.yaml).
 
 4. Test your installation by running a random agent. The agent receives observations and takes random actions:
 
@@ -75,10 +75,15 @@ python eval.py --agent-config baselines/config/random-agent.yaml
 
 ```sh
 cd docker/goseek-base/
-./temporary-clones.sh  # Note this is temporary
 docker build -t goseek-base .
 cd ../../
 ```
+
+Optionally, run the following to verify the docker image. It should print the usage instructions for [eval.py](eval.py).
+```sh
+docker run --rm -it goseek-base /bin/bash -c "python eval.py --help"
+```
+
 
 __NOTE__: In order to run the __Perception Pipeline__, you will need another docker image with [Kimera](https://github.com/MIT-SPARK/Kimera). Directions for building this image (named `goseek-kimera`) will be posted at a later time.
 
