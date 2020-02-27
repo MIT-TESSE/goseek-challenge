@@ -15,34 +15,25 @@ ENV DEBIAN_FRONTEND noninteractive
 # switch to bash within the container so ROS sourcing is easy in build commands
 SHELL ["/bin/bash", "-c"]
 
-# TODO(MMAZ) only used for debugging - remove
 RUN apt-get update && \
-    apt-get install -y curl bzip2 wget vim ffmpeg git tmux unzip
-
-# tesse: opencv dependency workaround from https://github.com/NVIDIA/nvidia-docker/issues/864
-RUN apt-get update && apt-get install -y libsm6 libxext6 libxrender-dev
-
-################################
-###         TESSE            ###
-################################
-
-WORKDIR /tesse
+    apt-get install -y git curl && \
+    apt-get clean
 
 RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
      chmod +x ~/miniconda.sh && \
      ~/miniconda.sh -b -p /opt/conda && \
      rm ~/miniconda.sh && \
      /opt/conda/bin/conda clean -ya && \
-     /opt/conda/bin/conda create -n python37 python=3.7 numpy pip scipy pyyaml pillow
+     /opt/conda/bin/conda create -y -n python37 python=3.7 numpy pip scipy pyyaml pillow
 
-RUN /opt/conda/bin/conda update -n base -c defaults conda
+RUN /opt/conda/bin/conda update -y -n base -c defaults conda
 
 # this will pseudo-activate the conda environment for all subsequent build commands
 ENV PATH /opt/conda/envs/python37/bin:/opt/conda/envs/bin:$PATH
 
 RUN pip install git+https://github.com/MIT-TESSE/tesse-gym.git@master
 
-COPY goseek-challenge /goseek-challenge
+RUN git clone https://github.com/MIT-TESSE/goseek-challenge.git /goseek-challenge
 WORKDIR /goseek-challenge
 
 
