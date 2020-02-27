@@ -90,13 +90,13 @@ __NOTE__: In order to run the __Perception Pipeline__, you will need another doc
 
 ## Usage
 
-__TODO__: Update Local Evaluation and Training subsections with more detailed usage instructions.
-
 ### Training
 
-__TODO__: This is mostly just notes....
+We implement the [OpenAI Gym](https://gym.openai.com/) interface in [tesse-gym](https://github.com/MIT-TESSE/tesse-gym) which can be used for reinforcement learning. 
 
-We've provided a complete example [below](#baseline-proximal-policy-optimization) demonstrating how to train and evaluate a PPO agent with [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/).
+Our specific implementation for this challenge can be found in the [goseek module](https://github.com/MIT-TESSE/tesse-gym/tree/master/src/tesse_gym/tasks/goseek). Participants are welcome to locally modify relevant details for developing a solution (e.g. modifying the reward function).
+
+We provide a complete [example](doc/ppo-baseline.md) demonstrating how to train a PPO agent using [tesse-gym](https://github.com/MIT-TESSE/tesse-gym).
 
 
 ### Local Evaluation
@@ -115,16 +115,24 @@ class Agent:
         The first 384000 values contain RGB, depth, and segmentation images,
         the last three contain pose in (x, y, heading).
 
-        An example of decoding this in numpy:
+        `tesse_gym` provides a function to decode this:
 
-        >>> imgs = observation[:-3].reshape(240, 320, 5)
-        >>> rgb = imgs[... :3]
-        >>> segmentation = imgs[...,  3]
-        >>> depth = imgs[..., 4]
-        >>> pose = observations[-3:]
+        >>> from tesse_gym.tasks.goseek import decode_observations 
+        >>> rgb, segmentation, depth, pose = decode_observations(observation)
+        
+        Providing image and pose data:
+        
+        >>> rgb.shape
+        (1, 240, 320, 3)
+        >>> segmentation.shape
+        (1, 240, 320, 3)
+        >>> rgb.shape
+        (1, 240, 320, 3)
+        >>> pose.shape
+        (1, 3)
 
         Args:
-            observation (np.ndarray): Shape (384003,) array of observations as described above.
+            observation (np.ndarray): Shape (1, 384003) array of observations as described above.
 
         Returns:
             int: Agent's action in the range [0,3].
@@ -214,7 +222,7 @@ python test_locally.py -s simulator/goseek-v0.1.0.x86_64 -i submission -g
 
 See any of the following for additional information and examples.
 
-- [Baseline Proximal Policy Optimization (PPA)](doc/ppo-baseline.md)
+- [Baseline Proximal Policy Optimization (PPO)](doc/ppo-baseline.md)
 - [Additional problem details](doc/details.md)
 
 
