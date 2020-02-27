@@ -40,20 +40,7 @@ RUN /opt/conda/bin/conda update -n base -c defaults conda
 # this will pseudo-activate the conda environment for all subsequent build commands
 ENV PATH /opt/conda/envs/python37/bin:/opt/conda/envs/bin:$PATH
 
-RUN pip install opencv-python
-# JDG temporary
-RUN pip install gym
-RUN pip install yacs
-RUN pip install defusedxml
-
-# tested with goseek-0.0.2
-# TODO(MMAZ) replace with clone
-COPY tesse-gym  /tesse-gym
-COPY tesse-interface /tesse-interface
-WORKDIR /tesse-interface
-RUN python setup.py install
-WORKDIR /tesse-gym
-RUN python setup.py install
+RUN pip install git+https://github.com/MIT-TESSE/tesse-gym.git@master
 
 COPY goseek-challenge /goseek-challenge
 WORKDIR /goseek-challenge

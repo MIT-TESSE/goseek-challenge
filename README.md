@@ -1,6 +1,6 @@
 # goseek-challenge
 
-Welcome to the GOSEEK challenge page, which is run in conjunction with [Perception, Action, Learning Workshop](https://mit-spark.github.io/PAL-ICRA2020/) at [ICRA 2020](https://www.icra2020.org/competitions/goseek-challenge).
+Welcome to the GOSEEK challenge page, which is run in conjunction with the [Perception, Action, Learning Workshop](https://mit-spark.github.io/PAL-ICRA2020/) at [ICRA 2020](https://www.icra2020.org/competitions/goseek-challenge).
 
 For this competition, participants create a reinforcement learning (RL) agent that combines perception and high-level decision-making to search for objects placed within complex indoor environments from a Unity-based simulator.
 Simply put: like PACMAN, but in a realistic scene and with realistic perception capabilities.
@@ -21,7 +21,7 @@ Our teaser trailer (below) highlights several of the components of the challenge
 [![GOSEEK Teaser Trailer](https://img.youtube.com/vi/KXTag0xsg28/0.jpg)](https://www.youtube.com/watch?v=KXTag0xsg28)
 
 More specifically, the agent can select from one of four actions at each decision epoch: move forward 0.5 meters, turn left 8 degrees, turn right 8 degrees, and collect fruit within 2.0 meters of the agent's current position.
-Our robot is equiped with stereo cameras and an Inertial Measurement Unit (IMU), from which a state-of-the-art perception pipeline estimates three pieces of information that make up the agent's observation at each decision epoch: localization information (position and heading relative to start position), pixel-wise semantic labels for objects in the robot's field of view, and pixel-wise depth in the robot's field of view.
+Our robot is equipped with stereo cameras and an Inertial Measurement Unit (IMU), from which a state-of-the-art perception pipeline estimates three pieces of information that make up the agent's observation at each decision epoch: localization information (position and heading relative to start position), pixel-wise semantic labels for objects in the robot's field of view, and pixel-wise depth in the robot's field of view.
 
 ### Data Sources
 
@@ -34,7 +34,7 @@ Note that the types (and dimensions) of observations provided are the same as be
 Participants can use either or both of these sources for training their agents.
 Agent interfaces are identical between the two sources.
 We'll accept online submissions against either source (see [below](#online-submission) for details) and maintain a leaderboard for both.
-However, only evaluations against the __Perception Pipeline__ will be used to declare an overvall competition winner.
+However, only evaluations against the __Perception Pipeline__ will be used to declare an overall competition winner.
 
 ### Evaluation
 
@@ -52,7 +52,7 @@ r + 0.1p - 0.1c/l - 0.1a/l
 where `l` is the maximum episode length (400). Note that an episode terminates early if all fruit are collected.
 
 We use Monte Carlo evaluations to estimate an average episode score for the competition.
-Note that evaluations occur on witheld office scenes.
+Note that evaluations occur on withheld office scenes.
 
 ## Logistics
 

@@ -36,17 +36,10 @@ conda activate goseek
 ```
 
 2. Install tesse-gym.
-__Note__: Temporarily use branch `0.1.2-SNAPSHOT`
 ```sh
-git clone git@github.mit.edu:TESS/tesse-gym.git -b 0.1.2-SNAPSHOT  
+git clone https://github.com/MIT-TESSE/tesse-gym.git
 cd tesse-gym
-
-# install tesse-gym requirements
-pip install -r requirements.txt
-
-# install tesse-gym
 python setup.py develop
-
 cd ..
 ```
 Note that we recommend installing in [development mode](https://setuptools.readthedocs.io/en/latest/setuptools.html#development-mode) in case you wish to make any local modifications.
@@ -57,22 +50,21 @@ See [below](#training) for further discussion.
 
 ```sh
 git clone git@github.mit.edu:TESS/goseek-challenge.git
-
 cd goseek-challenge
-pip install -r requirements.txt
 ```
 
 
 3. Next, you need to obtain GOSEEK simulator. Execute the following:
 ```sh
+cd goseek-challenge
 mkdir -p simulator
-wget --no-proxy https://llcad-github.llan.ll.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip  --no-check-certificate -P simulator
+wget https://github.com/MIT-TESSE/goseek-challenge/releases/download/0.1.0/goseek-v0.1.0.zip -P simulator
 unzip simulator/goseek-v0.1.0.zip -d simulator
 chmod +x simulator/goseek-v0.1.0.x86_64
 ```
-__TEMPORARY NOTE__: The above only works on Lincoln's network. For MIT users, please manually download the zip file from https://github.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip.
+__TEMPORARY NOTE__: `wget --no-proxy https://llcad-github.llan.ll.mit.edu/TESS/tesse-icra2020-competition/releases/download/0.1.0/goseek-v0.1.0.zip  --no-check-certificate -P simulator`
 
-This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable. Note that if you choose to place the simulator in an alternative location, you will need to specify the location in a configuration file that overrides the default [value](https://github.mit.edu/TESS/goseek-challenge/blob/feature/eval/config/config.py).
+This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable. Note that if you choose to place the simulator in an alternative location, you will need to specify the location in a configuration file that overrides the default value such as in [config/ground-truth.yaml](config/ground-truth.yaml]. All configuration options are defined [here](../../../tesse-gym/src/tesse_gym/tasks/goseek/goseek_config.py).
 
 4. Test your installation by running a random agent. The agent receives observations and takes random actions:
 
@@ -84,7 +76,6 @@ python eval.py --agent-config baselines/config/random-agent.yaml
 
 ```sh
 cd docker/goseek-base/
-./temporary-clones.sh  # Note this is temporary
 docker build -t goseek-base .
 cd ../../
 ```
@@ -216,51 +207,10 @@ python test_locally.py -s simulator/goseek-v0.1.0.x86_64 -i submission -g
 
 ## Examples
 
-### Baseline Proximal Policy Optimization (PPO)
+See any of the following for additional information and examples.
 
-#### Installation
-
-To run the example PPO baseline, install [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/) and a version of [Tensorflow](https://www.tensorflow.org/) between v0.8.0 and v1.14.0 (see the [Stable Baselines docs](https://stable-baselines.readthedocs.io/en/master/guide/install.html#prerequisites) for details).
-
-__Note__: Currently, we've tested Python 3.7 Tensorflow installation with Anaconda against Cuda 10.0-10.2 (run `nvcc -V` to check your Cuda version).
-
-For Cuda 10.0, we'd recommend installing `tensorflow-gpu v1.13.1`:
-
-```sh
-conda activate goseek 
-conda install tensorflow-gpu==1.13.1
-```
-
-For Cuda 10.1 and 10.2, we'd recommend installing `tensorflow-gpu v1.14`:
-
-```sh
-conda activate goseek 
-conda install tensorflow-gpu==1.14
-```
-
-Then, install [Stable Baselines](https://stable-baselines.readthedocs.io/en/master/)
-
-```sh
-conda activate goseek 
-pip install stable-baselines
-```
-
-#### Training
-
-See `tesse-gym/baselines/goseek-ppo.ipynb` to train a PPO agent for the GOSEEK challenge. The notebook details how to:
-
-* Configure a `tesse-gym` environment
-* Define a policy
-* Train a model
-* Visualize results
-
-#### Local Evaluation
-
-Once trained, you can evaluate your model with the same pipeline used for the random agent above. Simply update `goseek-challenge/baselines/config/baseline-ppo.yaml` with the path to the trained weights for your agent, this will be loaded by the `StableBaselinesPPO` agent defined in `baselines/agents.py`. Evaluate by running
-
-```sh
-python eval.py --agent-config baselines/config/ppo-agent.yaml
-```
+- [Baseline Proximal Policy Optimization (PPA)](doc/ppo-baseline.md)
+- [Additional problem details](doc/details.md)
 
 
 
