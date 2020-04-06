@@ -1,2 +1,2 @@
 name: StableBaselinesPPO
-weights: ''  # MODEL WEIGHT PATH
+weights: 'ppo-weights.pkl'  # PUT WEIGHTS AT SAVE LEVEL AS DOCKERFILE

@@ -70,6 +70,14 @@ The timeline for the competition is as follows:
 Over the course of the competition, any important announcements or updates will be listed in this section.
 We recommend that you follow this repository to be alerted to these announcements.
 
+1. We've posted version 0.1.2 of the challenge simulator.
+This provides better support for the __Perception Pipeline__ and addresses a minor bug.
+Please download this new simulator, if you were using 0.1.0.
+The link can be found in the [instruction](Instructions.md).
+2. We've also updated [tesse-gym](https://github.com/MIT-TESSE/tesse-gym) since our initial release to support the __Perception Pipeline__.
+You should update your clone of `tesse-gym` from the [instructions](Instructions.md).
+Please also rebuild the `goseek-base` docker image, as well as any of your submission images.
+
 ## Getting Started
 
 Complete installation instructions can be found [here](Instructions.md), which lays out prerequisites, provides a link to download the competition simulator, and describes steps to install all required competition software.
@@ -100,18 +108,28 @@ Use `test_locally.py` for local testing.
 
 Assume you've named your docker image `submission` as above, then evaluate your agent with __Ground Truth__ data as follows.
 ```sh
-python test_locally.py -s simulator/goseek-v0.1.0.x86_64 -i submission -g
+python test_locally.py -s simulator/goseek-v0.1.2.x86_64 -i submission -g
 ```
 
-__NOTE__: Instructions for testing your agent with the __Perception Pipeline__ will be posted shortly.
+Similarly, evaluate your agent with __Perception Pipeline__ data as follows.
+```sh
+python test_locally.py -s simulator/goseek-v0.1.2.x86_64 -i submission -p
+```
 
-### Submit online.
+### Submit online
 
-__NOTE__: Instructions for submitting agents online will be available according to the competition timeline [above](#timeline).
+1. Install [EvalAI-CLI](https://evalai-cli.cloudcv.org/): `pip install evalai`.
+    - Run `evalai host -sh https://staging-evalai.cloudcv.org` to configure your environment to use the staging server. (**NOTE: THIS is for beta testing**)
+2. Create on account on EvalAI's [website](https://evalai-staging.cloudcv.org/) and sign up for the [GOSEEK-Challenge](https://evalai-staging.cloudcv.org/web/challenges/challenge-page/242/overview).
+(**NOTE: Staging server URL is for beta testing**)
+3. Follow the instructions on the [submission](https://evalai-staging.cloudcv.org/web/challenges/challenge-page/242/submission) tab to push your docker image.
+Note that we've provided four phases to support development. 
+Only the leader of the **Competition Phase with Perception Pipeline** will be declared the competition winner.
+(**NOTE: Staging server URL is for beta testing**)
 
 ## Acknowledgements
 
-First, we would like to thank Rishabh Jain and the rest of the team at [EvalAI](https://evalai.cloudcv.org/) for providing their infrastructure and personal time to support this challenge. We must also acknowledge the team behind [The Habitat challenge](https://github.com/facebookresearch/habitat-challenge) for being pathfinders of RL challenges with online submissions. Their challenge and associated infrastructure was inspiration for many of our own decisions.
+First, we would like to thank [Rishabh Jain](https://rishabhjain.xyz/) and the rest of the team at [EvalAI](https://evalai.cloudcv.org/) for providing their infrastructure and personal time to support this challenge. We must also acknowledge the team behind [The Habitat challenge](https://github.com/facebookresearch/habitat-challenge) for being pathfinders of RL challenges with online submissions. Their challenge and associated infrastructure was inspiration for many of our own decisions.
 
 ## Disclaimer
 
