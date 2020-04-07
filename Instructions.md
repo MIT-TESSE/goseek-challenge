@@ -49,7 +49,7 @@ See [below](#training) for further discussion.
 2. Clone this repository and install requirements.
 
 ```sh
-git clone https://github.com/MIT-TESSE/goseek-challenge.git
+git clone https://github.mit.edu/TESS/goseek-challenge.git
 cd goseek-challenge
 ```
 
