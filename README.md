@@ -113,7 +113,7 @@ __NOTE__: Instructions for submitting agents online will be available according 
 
 ## Acknowledgements
 
-First, we would like to thank Rishabh Jain and the rest of the team at [EvalAI](https://evalai.cloudcv.org/) for providing their infrastructure and personal time to support this challenge. We must also acknowledge the team behind [The Habitat challenge](https://github.com/facebookresearch/habitat-challenge) for being pathfinders of RL challenges with online submissions. Their challenge and associated infrastructure was inspiration for many of our own decisions.
+First, we would like to thank [Rishabh Jain](https://rishabhjain.xyz/) and the rest of the team at [EvalAI](https://evalai.cloudcv.org/) for providing their infrastructure and personal time to support this challenge. We must also acknowledge the team behind [The Habitat challenge](https://github.com/facebookresearch/habitat-challenge) for being pathfinders of RL challenges with online submissions. Their challenge and associated infrastructure was inspiration for many of our own decisions.
 
 ## Disclaimer
 
