@@ -58,17 +58,19 @@ Note that evaluations occur on withheld office scenes.
 
 ### Timeline
 
-The timeline for the competition is as follows:
+The current timeline for the competition is as follows:
 
-- __Now until Mid-March__: Competition software available for local testing and training by participants with __Ground Truth__ data source.
-- __Mid-March__: __Perception Pipeline__ data source provided to participants. Instructions for online submissions also made available.
-- __April 30__: Online submission period ends.
-- __May 31__: Workshop date. Competition winner invited to provide keynote presentation.
+- __Until Mid-April__: Competition software available for local testing and training by participants with __Ground Truth__ data source.
+- __Mid-April__: __Perception Pipeline__ data source provided to participants. Instructions for online submissions also made available.
+- __May 20__: Online submission period ends.
 
 ### Announcements
 
 Over the course of the competition, any important announcements or updates will be listed in this section.
 We recommend that you follow this repository to be alerted to these announcements.
+
+1. We've delayed the opening of submissions in light of [ICRA 2020](https://icra2020.org/)'s status, and will continue to track its status. 
+We do not anticipate that any future statements from the planning committee will change the current timeline of this challenge.
 
 ## Getting Started
 
