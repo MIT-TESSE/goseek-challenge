@@ -28,7 +28,6 @@ ENV PATH /miniconda/bin:$PATH
 RUN conda update -y conda && \
     conda install -y -f python=3.7 numpy pip scipy pyyaml pillow
 
-# TODO(ZR) clone master when needed changes are merged
 RUN pip install -e git+https://github.com/MIT-TESSE/tesse-gym.git@master#egg=tesse-gym
 
 RUN git clone https://github.com/MIT-TESSE/goseek-challenge.git /goseek-challenge
