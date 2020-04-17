@@ -1,21 +1,5 @@
 FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
 # using devel to support installing pycuda
-
-# docker build -t goseek-kimera .
-# docker run --network="host" --gpus all --rm -it goseek-kimera /bin/bash
-# or with a volume mount
-# mkdir work
-# docker run --network="host" --gpus all -v $(pwd)/work:/work --rm -it goseek-kimera /bin/bash
-#
-# to run in a ROS env:
-# NOTE: this will cause ROS to be sourced for all subsequent commands in the terminal
-# > source /opt/ros/melodic/setup.bash &&  source /catkin_ws/devel/setup.bash && $ROS_COMMAND
-# e.g.,
-# > source /opt/ros/melodic/setup.bash &&  source /catkin_ws/devel/setup.bash && roslaunch gym_ros_interface run_kimera_tesse.launch
-#
-# to run from within a conda env:
-# > PATH=$CONDAPATH jupyter notebook --no-browser --allow-root
-
 # if you are behind a proxy: https://docs.docker.com/network/proxy/
 
 RUN apt-get clean && apt-get update && apt-get install -y locales
@@ -43,10 +27,6 @@ RUN apt-get update && \
 ################################
 ###          ROS             ###
 ################################
-
-# some useful info:
-# https://github.com/MIT-SPARK/Kimera-VIO-ROS/blob/master/docs/ros_installation.md
-# https://github.com/mit-racecar/racecar_docker/blob/master/Dockerfile
 
 #Set the ROS distro
 ENV ROS_DISTRO melodic
@@ -101,10 +81,6 @@ RUN source /opt/ros/melodic/setup.bash && \
 ###   TESSE ROS packages     ###
 ### TESSE Anaconda packages  ###
 ################################
-
-# Notes
-# Currently, we're copying tesse-gym-bridge, tesse-segmentation-ros, and tesse-ros-bridge
-# These will be cloned when on public github
 
 WORKDIR /catkin_ws/src
 
@@ -185,7 +161,6 @@ RUN   cd Kimera-VIO-ROS && \
       git checkout 42ad9ca557656ef3463b8cc3b841fe5a4a36398c && \
       cd ..
 
-# (this may be fixed, check Kimera-VIO issue)
 RUN cd gtsam && \
     git fetch && \
     git checkout develop && \
@@ -216,9 +191,6 @@ RUN echo "source /catkin_ws/devel/setup.bash" >> run_perception.sh && \
 ################################
 ###        TensorRT          ###
 ################################
-
-# https://developer.nvidia.com/tensorrt
-# https://docs.nvidia.com/deeplearning/sdk/tensorrt-developer-guide/index.html
 
 ADD TensorRT-6.0.1.5.Ubuntu-18.04.x86_64-gnu.cuda-10.0.cudnn7.6.tar.gz /
 RUN mv /TensorRT-6.0.1.5 /tensorrt
