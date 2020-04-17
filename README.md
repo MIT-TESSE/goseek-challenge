@@ -69,8 +69,15 @@ The current timeline for the competition is as follows:
 Over the course of the competition, any important announcements or updates will be listed in this section.
 We recommend that you follow this repository to be alerted to these announcements.
 
-1. We've delayed the opening of submissions in light of [ICRA 2020](https://icra2020.org/)'s status, and will continue to track its status. 
-We do not anticipate that any future statements from the planning committee will change the current timeline of this challenge.
+1. We've posted version 0.1.3 of the challenge simulator.
+This provides better support for the __Perception Pipeline__ and addresses a minor bug.
+Please download this new simulator, if you were using 0.1.0 before.
+The link can be found in the [instructions](Instructions.md).
+2. We've also updated [tesse-gym](https://github.com/MIT-TESSE/tesse-gym) since our initial release to support the __Perception Pipeline__.
+You should update your clone of `tesse-gym` from the [instructions](Instructions.md).
+Please also rebuild the `goseek-base` docker image, as well as any of your submission images.
+3. We continue to track the status of [ICRA 2020](https://icra2020.org/). 
+We do not anticipate that any future statements from the planning committee will change the timeline of this challenge.
 
 ## Getting Started
 
@@ -102,14 +109,22 @@ Use `test_locally.py` for local testing.
 
 Assume you've named your docker image `submission` as above, then evaluate your agent with __Ground Truth__ data as follows.
 ```sh
-python test_locally.py -s simulator/goseek-v0.1.0.x86_64 -i submission -g
+python test_locally.py -s simulator/goseek-v0.1.3.x86_64 -i submission -g
 ```
 
-__NOTE__: Instructions for testing your agent with the __Perception Pipeline__ will be posted shortly.
+Similarly, evaluate your agent with __Perception Pipeline__ data as follows.
+```sh
+python test_locally.py -s simulator/goseek-v0.1.3.x86_64 -i submission -p
+```
 
-### Submit online.
+### Submit online
 
-__NOTE__: Instructions for submitting agents online will be available according to the competition timeline [above](#timeline).
+1. Install [EvalAI-CLI](https://evalai-cli.cloudcv.org/): `pip install evalai`.
+
+2. Create on account on EvalAI's [website](https://evalai.cloudcv.org/) and sign up for the [GOSEEK-Challenge](https://evalai.cloudcv.org/web/challenges/challenge-page/607/overview).
+3. Follow the instructions on the [submission](https://evalai.cloudcv.org/web/challenges/challenge-page/607/submission) tab to push your docker image.
+Note that we've provided four phases -- some to support development. 
+Only the leader of the **Competition Phase with Perception Pipeline** will be declared the competition winner.
 
 ## Acknowledgements
 
