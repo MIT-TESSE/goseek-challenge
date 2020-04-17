@@ -1,2 +1,2 @@
 name: StableBaselinesPPO
-weights: 'ppo-weights.pkl'  # PUT WEIGHTS AT SAVE LEVEL AS DOCKERFILE
+weights: 'ppo-weights.pkl'  # PUT WEIGHTS AT GOSEEK-CHALLENGE ROOT

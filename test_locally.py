@@ -156,13 +156,13 @@ def extract_metrics(process, submission_stdout):
     if process.returncode == 0:
         results = submission_stdout.split("----- Per Episode Score -----")[-1]
         metrics = summarize(ast.literal_eval(results))
-    else:
+    else:  # Agent failure returns -1 weighted score
         metrics = {
             "Recall": 0,
             "Precision": 0,
             "Collisions": 0,
             "Actions": 0,
-            "Weighted Total": 0,
+            "Weighted Total": -1,
         }
     return metrics
 
@@ -181,11 +181,13 @@ def main(
     simulator: str,  # path to simulator
     kimera: bool,  # specify whether to run kimera docker
     image: str,  # path to docker image
-    config: str,  # path to configuration
+    config: str,  # path to configuration,
+    logdir: str = None,  # optional log dir
 ):
 
     try:
-        logdir = f"logs/{datetime.now().strftime('%m-%d-%Y_%H-%M-%s')}"
+        if logdir is None:
+            logdir = f"logs/{datetime.now().strftime('%m-%d-%Y_%H-%M-%s')}"
         if not os.path.exists(logdir):
             os.makedirs(logdir)
 

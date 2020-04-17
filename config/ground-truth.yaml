@@ -1,5 +1,5 @@
 ENV:
-  sim_path: 'simulator/goseek-v0.1.2.x86_64'
+  sim_path: ''
 
 EPISODE:
   scenes: [3, 5]

@@ -1,3 +1,7 @@
 simulator/
 
 __pycache__
+
+*.pyc
+.vscode/
+logs/*

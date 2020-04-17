@@ -120,14 +120,14 @@ WORKDIR /catkin_ws/src
 RUN source /opt/ros/melodic/setup.bash
 RUN wstool init
 
-COPY tmp/tesse-ros-bridge /catkin_ws/src/tesse-ros-bridge
-RUN wstool merge -y tesse-ros-bridge/install/tesse_ros_bridge.rosinstall
+RUN git clone https://github.com/MIT-TESSE/tesse-ros-bridge.git && \
+    wstool merge -y tesse-ros-bridge/install/tesse_ros_bridge.rosinstall
 
-COPY tmp/tesse-segmentation-ros /catkin_ws/src/tesse-segmentation-ros
-RUN wstool merge -y tesse-segmentation-ros/install/tesse_segmentation_ros.rosinstall
+RUN git clone https://github.com/MIT-TESSE/tesse-segmentation-ros.git && \
+    wstool merge -y tesse-segmentation-ros/install/tesse_segmentation_ros.rosinstall
 
-COPY tmp/tesse-gym-bridge /catkin_ws/src/tesse-gym-bridge
-RUN wstool merge -y tesse-gym-bridge/install/tesse_gym_bridge.rosinstall
+RUN git clone https://github.com/MIT-TESSE/tesse-gym-bridge.git && \
+    wstool merge -y tesse-gym-bridge/install/tesse_gym_bridge.rosinstall
 
 RUN wstool update
 RUN catkin build tesse_ros_bridge tesse_segmentation_ros tesse_gym_bridge
@@ -140,9 +140,10 @@ RUN catkin build tesse_ros_bridge tesse_segmentation_ros tesse_gym_bridge
 ###    KIMERA-Semantics      ###
 ################################
 
-# stable tested commits
-# TODO(ZR) update these when everything else is good
-# https://github.com/MIT-SPARK/Kimera-Semantics @ cb68bd0001b88cd7c8bd4576fe8838d5c4b48613
+# pinned commits: 
+# https://github.com/MIT-SPARK/Kimera-VIO-ROS @  f6181a1370677ffe8c24253554efebaf787f428e
+# https://github.com/MIT-SPARK/Kimera-VIO @ 42ad9ca557656ef3463b8cc3b841fe5a4a36398c
+# https://github.com/MIT-SPARK/Kimera-Semantics @ 0ae759f24cce9e9ffc28d0495327a3d2b37d2c99
 
 # Kimera dependencies
 RUN apt-get update &&  \
@@ -163,15 +164,26 @@ ENV PYTHONIOENCODING=UTF-8
 WORKDIR /catkin_ws/src
 
 RUN git clone https://github.com/MIT-SPARK/Kimera-VIO-ROS.git && \
+      cd Kimera-VIO-ROS && \
+      git checkout f6181a1370677ffe8c24253554efebaf787f428e && \
+      cd .. && \
       wstool merge -y Kimera-VIO-ROS/install/kimera_vio_ros_https.rosinstall && \
       wstool update
 
 RUN git clone https://github.com/MIT-SPARK/Kimera-Semantics.git && \
       cd Kimera-Semantics && \
-      git checkout cb68bd0001b88cd7c8bd4576fe8838d5c4b48613 && \
+      git checkout 0ae759f24cce9e9ffc28d0495327a3d2b37d2c99 && \
       cd .. && \
       wstool merge -y Kimera-Semantics/kimera/install/kimera_semantics_https.rosinstall && \
       wstool update
+      
+# checkout pinned commit of Kimera-VIO-ROS and Kimera-VIO
+RUN   cd Kimera-VIO-ROS && \
+      git checkout f6181a1370677ffe8c24253554efebaf787f428e && \
+      cd .. && \
+      cd Kimera-VIO && \
+      git checkout 42ad9ca557656ef3463b8cc3b841fe5a4a36398c && \
+      cd ..
 
 # (this may be fixed, check Kimera-VIO issue)
 RUN cd gtsam && \
@@ -207,8 +219,6 @@ RUN echo "source /catkin_ws/devel/setup.bash" >> run_perception.sh && \
 
 # https://developer.nvidia.com/tensorrt
 # https://docs.nvidia.com/deeplearning/sdk/tensorrt-developer-guide/index.html
-
-# TODO(MMAZ): check for the presence of this file by moving the command to the top of the dockerfile
 
 ADD TensorRT-6.0.1.5.Ubuntu-18.04.x86_64-gnu.cuda-10.0.cudnn7.6.tar.gz /
 RUN mv /TensorRT-6.0.1.5 /tensorrt

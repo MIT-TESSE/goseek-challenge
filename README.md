@@ -58,25 +58,26 @@ Note that evaluations occur on withheld office scenes.
 
 ### Timeline
 
-The timeline for the competition is as follows:
+The current timeline for the competition is as follows:
 
-- __Now until Mid-March__: Competition software available for local testing and training by participants with __Ground Truth__ data source.
-- __Mid-March__: __Perception Pipeline__ data source provided to participants. Instructions for online submissions also made available.
-- __April 30__: Online submission period ends.
-- __May 31__: Workshop date. Competition winner invited to provide keynote presentation.
+- __Until Mid-April__: Competition software available for local testing and training by participants with __Ground Truth__ data source.
+- __Mid-April__: __Perception Pipeline__ data source provided to participants. Instructions for online submissions also made available.
+- __May 20__: Online submission period ends.
 
 ### Announcements
 
 Over the course of the competition, any important announcements or updates will be listed in this section.
 We recommend that you follow this repository to be alerted to these announcements.
 
-1. We've posted version 0.1.2 of the challenge simulator.
+1. We've posted version 0.1.3 of the challenge simulator.
 This provides better support for the __Perception Pipeline__ and addresses a minor bug.
-Please download this new simulator, if you were using 0.1.0.
-The link can be found in the [instruction](Instructions.md).
+Please download this new simulator, if you were using 0.1.0 before.
+The link can be found in the [instructions](Instructions.md).
 2. We've also updated [tesse-gym](https://github.com/MIT-TESSE/tesse-gym) since our initial release to support the __Perception Pipeline__.
 You should update your clone of `tesse-gym` from the [instructions](Instructions.md).
 Please also rebuild the `goseek-base` docker image, as well as any of your submission images.
+3. We continue to track the status of [ICRA 2020](https://icra2020.org/). 
+We do not anticipate that any future statements from the planning committee will change the timeline of this challenge.
 
 ## Getting Started
 
@@ -108,24 +109,22 @@ Use `test_locally.py` for local testing.
 
 Assume you've named your docker image `submission` as above, then evaluate your agent with __Ground Truth__ data as follows.
 ```sh
-python test_locally.py -s simulator/goseek-v0.1.2.x86_64 -i submission -g
+python test_locally.py -s simulator/goseek-v0.1.3.x86_64 -i submission -g
 ```
 
 Similarly, evaluate your agent with __Perception Pipeline__ data as follows.
 ```sh
-python test_locally.py -s simulator/goseek-v0.1.2.x86_64 -i submission -p
+python test_locally.py -s simulator/goseek-v0.1.3.x86_64 -i submission -p
 ```
 
 ### Submit online
 
 1. Install [EvalAI-CLI](https://evalai-cli.cloudcv.org/): `pip install evalai`.
-    - Run `evalai host -sh https://staging-evalai.cloudcv.org` to configure your environment to use the staging server. (**NOTE: THIS is for beta testing**)
-2. Create on account on EvalAI's [website](https://evalai-staging.cloudcv.org/) and sign up for the [GOSEEK-Challenge](https://evalai-staging.cloudcv.org/web/challenges/challenge-page/242/overview).
-(**NOTE: Staging server URL is for beta testing**)
-3. Follow the instructions on the [submission](https://evalai-staging.cloudcv.org/web/challenges/challenge-page/242/submission) tab to push your docker image.
-Note that we've provided four phases to support development. 
+
+2. Create on account on EvalAI's [website](https://evalai.cloudcv.org/) and sign up for the [GOSEEK-Challenge](https://evalai.cloudcv.org/web/challenges/challenge-page/607/overview).
+3. Follow the instructions on the [submission](https://evalai.cloudcv.org/web/challenges/challenge-page/607/submission) tab to push your docker image.
+Note that we've provided four phases -- some to support development. 
 Only the leader of the **Competition Phase with Perception Pipeline** will be declared the competition winner.
-(**NOTE: Staging server URL is for beta testing**)
 
 ## Acknowledgements
 
