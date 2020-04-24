@@ -141,7 +141,7 @@ WORKDIR /catkin_ws/src
 
 RUN git clone https://github.com/MIT-SPARK/Kimera-VIO-ROS.git && \
       cd Kimera-VIO-ROS && \
-      git checkout f6181a1370677ffe8c24253554efebaf787f428e && \
+      git checkout db6afe795f3bf6b88842d2c45cb2306926505051 && \
       cd .. && \
       wstool merge -y Kimera-VIO-ROS/install/kimera_vio_ros_https.rosinstall && \
       wstool update
@@ -155,10 +155,10 @@ RUN git clone https://github.com/MIT-SPARK/Kimera-Semantics.git && \
       
 # checkout pinned commit of Kimera-VIO-ROS and Kimera-VIO
 RUN   cd Kimera-VIO-ROS && \
-      git checkout f6181a1370677ffe8c24253554efebaf787f428e && \
+      git checkout db6afe795f3bf6b88842d2c45cb2306926505051 && \
       cd .. && \
       cd Kimera-VIO && \
-      git checkout 42ad9ca557656ef3463b8cc3b841fe5a4a36398c && \
+      git fetch && git checkout 13a52d8772305be143ebdf470c8714759e411f59 && \
       cd ..
 
 RUN cd gtsam && \
