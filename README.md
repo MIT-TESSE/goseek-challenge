@@ -109,12 +109,12 @@ Use `test_locally.py` for local testing.
 
 Assume you've named your docker image `submission` as above, then evaluate your agent with __Ground Truth__ data as follows.
 ```sh
-python test_locally.py -s simulator/goseek-v0.1.3.x86_64 -i submission -g
+python test_locally.py -s simulator/goseek-v0.1.4.x86_64 -i submission -g
 ```
 
 Similarly, evaluate your agent with __Perception Pipeline__ data as follows.
 ```sh
-python test_locally.py -s simulator/goseek-v0.1.3.x86_64 -i submission -p
+python test_locally.py -s simulator/goseek-v0.1.4.x86_64 -i submission -p
 ```
 
 ### Submit online
