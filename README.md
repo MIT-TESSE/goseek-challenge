@@ -126,6 +126,14 @@ python test_locally.py -s simulator/goseek-v0.1.4.x86_64 -i submission -p
 Note that we've provided four phases -- some to support development. 
 Only the leader of the **Competition Phase with Perception Pipeline** will be declared the competition winner.
 
+## Citing
+
+If you participate in GOSEEK and write a paper or a report about your entry, please cite:
+
+- D. Yadav, R. Jain, H. Agrawal, P. Chattopadhyay, T. Singh, A. Jain, S. B. Singh, S. Lee, D. Batra, “EvalAI: Towards Better Evaluation Systems for AI Agents”, arXiv:1902.03570, 2019.
+- A. Rosinol, M. Abate, Y. Chang, and L. Carlone. Kimera: an open-source library for real-time metric-semantic localization and mapping. In IEEE Intl. Conf. on Robotics and Automation (ICRA), 2020.
+
+
 ## Acknowledgements
 
 First, we would like to thank [Rishabh Jain](https://rishabhjain.xyz/) and the rest of the team at [EvalAI](https://evalai.cloudcv.org/) for providing their infrastructure and personal time to support this challenge. We must also acknowledge the team behind [The Habitat challenge](https://github.com/facebookresearch/habitat-challenge) for being pathfinders of RL challenges with online submissions. Their challenge and associated infrastructure was inspiration for many of our own decisions.
