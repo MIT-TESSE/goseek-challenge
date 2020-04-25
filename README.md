@@ -71,13 +71,20 @@ We recommend that you follow this repository to be alerted to these announcement
 
 1. We've posted version 0.1.3 of the challenge simulator.
 This provides better support for the __Perception Pipeline__ and addresses a minor bug.
-Please download this new simulator, if you were using 0.1.0 before.
-The link can be found in the [instructions](Instructions.md).
+~Please download this new simulator, if you were using 0.1.0 before.
+The link can be found in the [instructions](Instructions.md).~
+*[See 4. below]*
 2. We've also updated [tesse-gym](https://github.com/MIT-TESSE/tesse-gym) since our initial release to support the __Perception Pipeline__.
 You should update your clone of `tesse-gym` from the [instructions](Instructions.md).
 Please also rebuild the `goseek-base` docker image, as well as any of your submission images.
 3. We continue to track the status of [ICRA 2020](https://icra2020.org/). 
 We do not anticipate that any future statements from the planning committee will change the timeline of this challenge.
+4. **[April 24]** Unfortunately, 0.1.3 of the challenge simulator was missing a shader for the strawberry in the RGB feed -- if you looked carefully it would appear gray.
+We believe that most people are not directly using RGB data, so hopefully this has not negatively impacted your experience.
+We've posted [0.1.4](https://github.com/MIT-TESSE/goseek-challenge/releases/download/0.1.0/goseek-v0.1.4.zip) of the simulator to correct this and updated all instructions.
+5. **[April 24]** We've updated the [goseek-kimera Dockerfile](docker/goseek-kimera/Dockerfile) to incorporate some recent updates to Kimera.
+The changes improve stability. 
+Please rebuild if you are using this. We've also updated [tesse-gym](https://github.com/MIT-TESSE/tesse-gym) to synchronize with the aforementioned changes. Please reclone to use the latest version. 
 
 ## Getting Started
 
@@ -109,12 +116,12 @@ Use `test_locally.py` for local testing.
 
 Assume you've named your docker image `submission` as above, then evaluate your agent with __Ground Truth__ data as follows.
 ```sh
-python test_locally.py -s simulator/goseek-v0.1.3.x86_64 -i submission -g
+python test_locally.py -s simulator/goseek-v0.1.4.x86_64 -i submission -g
 ```
 
 Similarly, evaluate your agent with __Perception Pipeline__ data as follows.
 ```sh
-python test_locally.py -s simulator/goseek-v0.1.3.x86_64 -i submission -p
+python test_locally.py -s simulator/goseek-v0.1.4.x86_64 -i submission -p
 ```
 
 ### Submit online
@@ -125,6 +132,14 @@ python test_locally.py -s simulator/goseek-v0.1.3.x86_64 -i submission -p
 3. Follow the instructions on the [submission](https://evalai.cloudcv.org/web/challenges/challenge-page/607/submission) tab to push your docker image.
 Note that we've provided four phases -- some to support development. 
 Only the leader of the **Competition Phase with Perception Pipeline** will be declared the competition winner.
+
+## Citing
+
+If you participate in GOSEEK and write a paper or a report about your entry, please cite:
+
+- D. Yadav, R. Jain, H. Agrawal, P. Chattopadhyay, T. Singh, A. Jain, S. B. Singh, S. Lee, D. Batra, “EvalAI: Towards Better Evaluation Systems for AI Agents”, arXiv:1902.03570, 2019.
+- A. Rosinol, M. Abate, Y. Chang, and L. Carlone. Kimera: an open-source library for real-time metric-semantic localization and mapping. In IEEE Intl. Conf. on Robotics and Automation (ICRA), 2020.
+
 
 ## Acknowledgements
 

@@ -57,9 +57,9 @@ cd goseek-challenge
 4. Next, you need to obtain GOSEEK simulator. Execute the following:
 ```sh
 mkdir -p simulator
-wget https://github.com/MIT-TESSE/goseek-challenge/releases/download/0.1.0/goseek-v0.1.3.zip -P simulator
-unzip simulator/goseek-v0.1.3.zip -d simulator
-chmod +x simulator/goseek-v0.1.3.x86_64
+wget https://github.com/MIT-TESSE/goseek-challenge/releases/download/0.1.0/goseek-v0.1.4.zip -P simulator
+unzip simulator/goseek-v0.1.4.zip -d simulator
+chmod +x simulator/goseek-v0.1.4.x86_64
 ```
 
 This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable.
@@ -236,7 +236,7 @@ optional arguments:
 
 For example, you can run the following to test against __Ground Truth__ data source:
 ```sh
-python test_locally.py -s simulator/goseek-v0.1.3.x86_64 -i submission -g
+python test_locally.py -s simulator/goseek-v0.1.4.x86_64 -i submission -g
 ```
 
 #### Submitting docker image 
