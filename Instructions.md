@@ -46,7 +46,7 @@ Note that we recommend installing in [development mode](https://setuptools.readt
 See [below](#training) for further discussion.
 
 
-2. Clone this repository and install requirements.
+3. Clone this repository and install requirements.
 
 ```sh
 git clone https://github.mit.edu/TESS/goseek-challenge.git
@@ -54,24 +54,24 @@ cd goseek-challenge
 ```
 
 
-3. Next, you need to obtain GOSEEK simulator. Execute the following:
+4. Next, you need to obtain GOSEEK simulator. Execute the following:
 ```sh
 mkdir -p simulator
-wget https://github.com/MIT-TESSE/goseek-challenge/releases/download/0.1.0/goseek-v0.1.0.zip -P simulator
-unzip simulator/goseek-v0.1.0.zip -d simulator
-chmod +x simulator/goseek-v0.1.0.x86_64
+wget https://github.com/MIT-TESSE/goseek-challenge/releases/download/0.1.0/goseek-v0.1.4.zip -P simulator
+unzip simulator/goseek-v0.1.4.zip -d simulator
+chmod +x simulator/goseek-v0.1.4.x86_64
 ```
 
 This creates a new `simulator` folder, download and unzips the simulator to that folder, and makes the simulator executable.
-Note that if you choose to place the simulator in an alternative location, you will need to specify the location in a configuration file that overrides the default value such as in [config/ground-truth.yaml](config/ground-truth.yaml).
+Note that if you choose to place the simulator in an alternative location, you will need to specify the location in a configuration file that overrides the default value such as in [config/check-ground-truth.yaml](config/check-ground-truth.yaml).
 
-4. Test your installation by running a random agent. The agent receives observations and takes random actions:
+5. Test your installation by running a random agent. The agent receives observations and takes random actions:
 
 ```sh
-python eval.py --agent-config baselines/config/random-agent.yaml
+python eval.py --agent-config baselines/config/random-agent.yaml --episode-config config/check-ground-truth.yaml
 ```
 
-5. Next, build a docker image called `goseek-base`, which is needed to submit online solutions.
+6. Next, build a docker image called `goseek-base`, which is needed to submit online solutions.
 
 ```sh
 cd docker/goseek-base/
@@ -85,7 +85,29 @@ docker run --rm -it goseek-base /bin/bash -c "python eval.py --help"
 ```
 
 
-__NOTE__: In order to run the __Perception Pipeline__, you will need another docker image with [Kimera](https://github.com/MIT-SPARK/Kimera). Directions for building this image (named `goseek-kimera`) will be posted at a later time.
+7. In order to run the __Perception Pipeline__, you will need another docker image with [Kimera](https://github.com/MIT-SPARK/Kimera). Directions for building this image (named `goseek-kimera`) are as follows. 
+Please note that building this image is not required to submit a solution for the competition; it is only used for any local testing and/or training with the __Perception Pipeline__.
+We strongly encourage participants to review [further details](doc/perception-pipeline.md) on the perception pipeline, as well.
+
+    a. First, obtain [TensorRT](https://developer.nvidia.com/nvidia-tensorrt-download). 
+    Note that you'll need to create an Nvidia account and manually download it because TensorRT is proprietary.
+    Select `TensorRT-6.0.1.5.Ubuntu-18.04.x86_64-gnu.cuda-10.0.cudnn7.6.tar.gz` from the Nvidia TensorRT 
+    download page and **place the binary in `goseek-challenge/docker/goseek-kimera/`**.
+
+    b. Build the docker image.
+    Note that this takes quite a while.
+    (Go watch a movie? :man_shrugging:)
+
+    ```sh
+    docker build --rm -t goseek-kimera .
+    ```
+
+    c. And, optionally again, run the following to verify the docker image.
+    It should return the list of directory contents in [tesse_gym_bridge](https://www.github.com/MIT-TESSE/tesse-gym-bridge).
+    
+    ```sh
+    docker run --rm -it goseek-kimera /bin/bash -c "source /catkin_ws/devel/setup.bash && rosls tesse_gym_bridge"
+    ```
 
 
 ## Usage
@@ -126,7 +148,7 @@ class Agent:
         (1, 240, 320, 3)
         >>> segmentation.shape
         (1, 240, 320, 3)
-        >>> rgb.shape
+        >>> depth.shape
         (1, 240, 320, 3)
         >>> pose.shape
         (1, 3)
@@ -214,17 +236,31 @@ optional arguments:
 
 For example, you can run the following to test against __Ground Truth__ data source:
 ```sh
-python test_locally.py -s simulator/goseek-v0.1.0.x86_64 -i submission -g
+python test_locally.py -s simulator/goseek-v0.1.4.x86_64 -i submission -g
 ```
 
+#### Submitting docker image 
 
+As mentioned in [competition overview](README.md), we are using the [EvalAI](https://evalai.cloudcv.org/) platform to host our submission server. To upload a solution, please follow the instructions below: 
+
+
+1. Install [EvalAI-CLI](https://evalai-cli.cloudcv.org/): `pip install evalai`.
+
+2. Create on account on EvalAI's [website](https://evalai.cloudcv.org/) and sign up for the [GOSEEK-Challenge](https://evalai.cloudcv.org/web/challenges/challenge-page/607/overview).
+
+3. Follow the instructions on the [submission](https://evalai.cloudcv.org/web/challenges/challenge-page/607/submission) tab to push your docker image.
+Note that we've provided four phases -- some to support development. 
+Only the leader of the **Competition Phase with Perception Pipeline** will be declared the competition winner.
 ## Examples
+
 
 See any of the following for additional information and examples.
 
 - [Baseline Proximal Policy Optimization (PPO)](doc/ppo-baseline.md)
 - [Additional problem details](doc/details.md)
-
+- [Instructions for running headless on a linux server](https://github.com/MIT-TESSE/tesse-core#running-tesse-headless)
+- [Generating configuration files](doc/generate.md)
+- [Details on the Perception Pipeline](doc/perception-pipeline.md)
 
 
 ## Disclaimer

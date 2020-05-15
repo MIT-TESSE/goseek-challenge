@@ -19,23 +19,19 @@ RUN apt-get update && \
     apt-get install -y git curl && \
     apt-get clean
 
-RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
-     chmod +x ~/miniconda.sh && \
-     ~/miniconda.sh -b -p /opt/conda && \
-     rm ~/miniconda.sh && \
-     /opt/conda/bin/conda clean -ya && \
-     /opt/conda/bin/conda create -y -n python37 python=3.7 numpy pip scipy pyyaml pillow
+RUN curl -LO http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    bash Miniconda3-latest-Linux-x86_64.sh -p /miniconda -b &&  \
+    rm Miniconda3-latest-Linux-x86_64.sh
 
-RUN /opt/conda/bin/conda update -y -n base -c defaults conda
+ENV PATH /miniconda/bin:$PATH
 
-# this will pseudo-activate the conda environment for all subsequent build commands
-ENV PATH /opt/conda/envs/python37/bin:/opt/conda/envs/bin:$PATH
+RUN conda update -y conda && \
+    conda install -y -f python=3.7 numpy pip scipy pyyaml pillow
 
-RUN pip install git+https://github.com/MIT-TESSE/tesse-gym.git@master
+RUN pip install -e git+https://github.com/MIT-TESSE/tesse-gym.git@master#egg=tesse-gym
 
 RUN git clone https://github.com/MIT-TESSE/goseek-challenge.git /goseek-challenge
 WORKDIR /goseek-challenge
-
 
 #########################################################################################
 # DISTRIBUTION STATEMENT A. Approved for public release. Distribution is unlimited.

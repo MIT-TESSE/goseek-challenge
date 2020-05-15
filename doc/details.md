@@ -23,7 +23,7 @@ They don't spawn in other rooms (e.g., restroom, breakroom).
 
 ### Semantics
 
-There are 10 semantic categories for objects as follows.
+There are 11 semantic categories for objects as follows.
 - 0: floor (0,171,143)
 - 1: ceiling (1,155,211)
 - 2: wall (2,222,110)
