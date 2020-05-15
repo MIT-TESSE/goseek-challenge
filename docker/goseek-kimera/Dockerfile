@@ -166,6 +166,8 @@ RUN cd gtsam && \
     git checkout develop && \
     git pull
 
+RUN catkin build gtsam opengv_catkin opencv3_catkin kimera_rpgo dbow2_catkin
+
 RUN catkin build
 
 ################################
