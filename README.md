@@ -62,7 +62,7 @@ The current timeline for the competition is as follows:
 
 - __Until Mid-April__: Competition software available for local testing and training by participants with __Ground Truth__ data source.
 - __Mid-April__: __Perception Pipeline__ data source provided to participants. Instructions for online submissions also made available.
-- __May 20__: Online submission period ends.
+- __May 25__: Online submission period ends.
 
 ### Announcements
 
@@ -85,6 +85,7 @@ We've posted [0.1.4](https://github.com/MIT-TESSE/goseek-challenge/releases/down
 5. **[April 24]** We've updated the [goseek-kimera Dockerfile](docker/goseek-kimera/Dockerfile) to incorporate some recent updates to Kimera.
 The changes improve stability. 
 Please rebuild if you are using this. We've also updated [tesse-gym](https://github.com/MIT-TESSE/tesse-gym) to synchronize with the aforementioned changes. Please reclone to use the latest version. 
+6. **[May 19]** We've changed the date for final submissions from May 20th to May 25th.
 
 ## Getting Started
 
