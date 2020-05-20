@@ -24,7 +24,7 @@ Then, install [Stable Baselines](https://stable-baselines.readthedocs.io/en/mast
 
 ```sh
 conda activate goseek 
-pip install stable-baselines
+pip install stable-baselines==2.9.0
 ```
 
 ### Training
